@@ -1,0 +1,668 @@
+{
+  "$schema": "agent_routing_map_v1.0",
+  "description": "Direct intent-to-agent routing mappings for PHEPy orchestrator",
+  "version": "1.0.0",
+  "last_updated": "2026-02-13",
+  
+  "routing_patterns": {
+    
+    "incident_management": {
+      "agent": "escalation_manager",
+      "sub_agent_path": "sub_agents/icm_agent/",
+      "mcp_tools": ["icm", "kusto"],
+      "patterns": [
+        "icm details",
+        "incident details",
+        "get icm",
+        "analyze icm",
+        "icm timeline",
+        "customer impact",
+        "affected customers",
+        "similar icm",
+        "find related icm",
+        "icm history",
+        "by design analysis",
+        "documentation gaps",
+        "doc gaps",
+        "incident trends",
+        "icm report",
+        "severity analysis",
+        "recurring issues",
+        "team comparison icm",
+        "on-call schedule",
+        "who is on call",
+        "dri assignment",
+        "escalation path",
+        "sev2",
+        "sev3",
+        "sev4",
+        "p0",
+        "p1",
+        "p2",
+        "high severity",
+        "critical incidents",
+        "this week icm",
+        "last week icm",
+        "today icm",
+        "yesterday icm",
+        "last 7 days",
+        "last 30 days",
+        "last month",
+        "this quarter",
+        "for purview",
+        "for dlp",
+        "for mip",
+        "for sensitivity",
+        "for retention",
+        "for ediscovery",
+        "for compliance",
+        "team icms",
+        "my team icms"
+      ],
+      "quick_actions": {
+        "icm_details": "icm_agent/fetch_expanded_icm_details.py",
+        "by_design": "icm_agent/run_full_analysis.py",
+        "doc_gaps": "icm_agent/generate_doc_gap_analysis.py",
+        "dlp_report": "icm_agent/run_dlp_report.py"
+      }
+    },
+    
+    "support_cases": {
+      "agent": "support_case_manager",
+      "sub_agent_path": "sub_agents/support_case_manager/",
+      "mcp_tools": ["ado_o365exchange", "kusto"],
+      "patterns": [
+        "dfm case",
+        "support case",
+        "case tracking",
+        "sla monitoring",
+        "at-risk cases",
+        "case timeline",
+        "case status",
+        "customer case",
+        "case correlation",
+        "link case to icm",
+        "case details",
+        "case history",
+        "escalation needed",
+        "sla breach",
+        "sla warning",
+        "open cases",
+        "active cases",
+        "my cases",
+        "case by customer",
+        "high priority cases",
+        "critical cases",
+        "case update",
+        "close case"
+      ],
+      "quick_actions": {
+        "at_risk": "support_case_manager/get_at_risk_cases.py",
+        "case_details": "support_case_manager/fetch_case_details.py"
+      }
+    },
+    
+    "work_items": {
+      "agent": "work_item_manager",
+      "sub_agent_path": "sub_agents/work_item_manager/",
+      "mcp_tools": ["ado_asim", "ado_o365exchange"],
+      "patterns": [
+        "create bug",
+        "create work item",
+        "ado bug",
+        "track bug",
+        "link to icm",
+        "assign bug",
+        "update work item",
+        "sprint planning",
+        "team velocity",
+        "backlog priority",
+        "search ado",
+        "find work item",
+        "bug status",
+        "feature request",
+        "create branch",
+        "pull request",
+        "code review",
+        "pipeline",
+        "build status",
+        "test results",
+        "my bugs",
+        "my work items",
+        "assigned to me",
+        "open bugs",
+        "active bugs",
+        "bug by priority",
+        "high priority bugs",
+        "blocked bugs",
+        "update bug",
+        "close bug",
+        "resolve bug"
+      ],
+      "quick_actions": {
+        "create_bug": "work_item_manager/create_bug.py",
+        "link_to_icm": "work_item_manager/link_artifact.py",
+        "search_items": "work_item_manager/search_workitems.py"
+      }
+    },
+    
+    "kusto_queries": {
+      "agent": "kusto_expert",
+      "sub_agent_path": "sub_agents/kusto_expert/",
+      "mcp_tools": ["kusto"],
+      "patterns": [
+        "query kusto",
+        "run query",
+        "kql",
+        "telemetry",
+        "error patterns",
+        "analyze errors",
+        "tenant health",
+        "usage metrics",
+        "feature adoption",
+        "performance metrics",
+        "time series",
+        "trend analysis",
+        "compare metrics",
+        "baseline comparison",
+        "anomaly detection",
+        "table schema",
+        "list tables",
+        "data exploration",
+        "last 24 hours",
+        "last 48 hours",
+        "last 7 days",
+        "last 30 days",
+        "this month",
+        "last month",
+        "this quarter",
+        "error rate",
+        "success rate",
+        "latency",
+        "availability",
+        "count by",
+        "summarize",
+        "top errors",
+        "correlation"
+      ],
+      "quick_actions": {
+        "execute_query": "kusto_expert/execute_kql.py",
+        "schema_info": "kusto_expert/get_schema.py",
+        "pre_built_queries": "purview_analysis/queries/"
+      }
+    },
+    
+    "customer_health": {
+      "agent": "tenant_health_monitor",
+      "sub_agent_path": "sub_agents/tenant_health_monitor/",
+      "mcp_tools": ["kusto", "icm"],
+      "patterns": [
+        "tenant health",
+        "customer health",
+        "health check",
+        "proactive monitoring",
+        "risk report",
+        "production report",
+        "ic report",
+        "mcs report",
+        "customer metrics",
+        "tenant status",
+        "health score",
+        "at-risk customers",
+        "customer impact",
+        "tenant comparison",
+        "ic customers",
+        "mcs customers",
+        "top customers",
+        "vip customers",
+        "critical customers",
+        "customer telemetry",
+        "tenant errors",
+        "customer issues",
+        "baseline comparison"
+      ],
+      "quick_actions": {
+        "ic_report": "risk_reports/run_ic_report.py",
+        "mcs_report": "risk_reports/run_mcs_report.py",
+        "health_check": "tenant_health_monitor/check_tenant.py"
+      }
+    },
+    
+    "product_knowledge": {
+      "agent": "purview_product_expert",
+      "sub_agent_path": "sub_agents/purview_product_expert/",
+      "mcp_tools": ["ado_o365exchange_wiki"],
+      "patterns": [
+        "how does",
+        "explain",
+        "what is",
+        "sensitivity label",
+        "dlp policy",
+        "retention",
+        "encryption",
+        "auto-labeling",
+        "feature capability",
+        "architecture",
+        "licensing",
+        "prerequisites",
+        "known issue",
+        "troubleshoot",
+        "configuration",
+        "best practice",
+        "limitations",
+        "scale limits"
+      ],
+      "quick_actions": {
+        "search_knowledge": "purview_product_expert/search_docs.py"
+      }
+    },
+    
+    "contacts_lookup": {
+      "agent": "contacts_escalation_finder",
+      "sub_agent_path": "sub_agents/contacts_escalation_finder/",
+      "mcp_tools": ["icm"],
+      "patterns": [
+        "find contact",
+        "who is",
+        "team contact",
+        "escalation path",
+        "account team",
+        "customer contact",
+        "reach out to",
+        "notify",
+        "email address",
+        "team roster",
+        "org chart"
+      ],
+      "quick_actions": {
+        "lookup_contact": "contacts_escalation_finder/find_contact.py"
+      }
+    },
+    
+    "onboarding": {
+      "agent": "program_onboarding_manager",
+      "sub_agent_path": "sub_agents/program_onboarding_manager/",
+      "mcp_tools": [],
+      "patterns": [
+        "onboard customer",
+        "new customer",
+        "ic setup",
+        "mcs setup",
+        "create onboarding plan",
+        "milestone tracking",
+        "checklist",
+        "readiness assessment",
+        "kickoff plan"
+      ],
+      "quick_actions": {
+        "create_plan": "program_onboarding_manager/create_plan.py"
+      }
+    },
+    
+    "continuous_improvement": {
+      "agent": "continuous_improvement_gemba",
+      "sub_agent_path": "sub_agents/continuous_improvement_gemba/",
+      "mcp_tools": ["kusto"],
+      "patterns": [
+        "process improvement",
+        "waste elimination",
+        "gemba walk",
+        "value stream",
+        "bottleneck",
+        "efficiency",
+        "lean",
+        "kaizen",
+        "root cause",
+        "5 whys",
+        "pareto analysis"
+      ],
+      "quick_actions": {
+        "gemba_analysis": "continuous_improvement_gemba/run_analysis.py"
+      }
+    },
+    
+    "lqe_monitoring": {
+      "agent": "lqe_agent",
+      "sub_agent_path": "sub_agents/lqe_agent/",
+      "mcp_tools": ["icm", "kusto"],
+      "patterns": [
+        "low quality escalation",
+        "lqe",
+        "friday report",
+        "weekly lqe",
+        "regional report",
+        "lqe trends",
+        "escalation quality",
+        "apac",
+        "emea",
+        "americas",
+        "regional lqe",
+        "lqe by region",
+        "weekly regional",
+        "lqe email",
+        "send lqe",
+        "lqe summary",
+        "quality metrics"
+      ],
+      "quick_actions": {
+        "friday_report": "lqe_agent/generate_friday_reports.py",
+        "regional_report": "lqe_agent/generate_regional_lqe_reports.py",
+        "weekly_regional": "lqe_agent/run_weekly_regional_reports.py",
+        "send_emails": "lqe_agent/send_regional_lqe_emails.py"
+      }
+    },
+    
+    "tsg_management": {
+      "agent": "tsg_analyzer",
+      "sub_agent_path": "tsg_system/",
+      "mcp_tools": ["icm", "ado_o365exchange_wiki"],
+      "patterns": [
+        "tsg gaps",
+        "tsg gap",
+        "tsg coverage",
+        "tsg analysis",
+        "troubleshooting guide",
+        "tsg effectiveness",
+        "missing tsg",
+        "tsg workflow",
+        "create tsg",
+        "update tsg",
+        "tsg documentation",
+        "runbook gaps",
+        "runbook",
+        "tsg needed"
+      ],
+      "quick_actions": {
+        "gap_analysis": "tsg_system/scripts/tsg_gap_analyzer.py",
+        "gap_workflow": "tsg_system/scripts/tsg_gap_workflow.py"
+      }
+    }
+  },
+  
+  "workflow_shortcuts": {
+    "new_icm_response": {
+      "description": "Full incident response workflow",
+      "steps": [
+        {"agent": "escalation_manager", "action": "get_icm_details"},
+        {"agent": "kusto_expert", "action": "query_telemetry"},
+        {"agent": "escalation_manager", "action": "find_similar"},
+        {"agent": "work_item_manager", "action": "create_tracking_bug"},
+        {"agent": "contacts_escalation_finder", "action": "get_oncall"}
+      ],
+      "triggers": [
+        "new icm workflow",
+        "p0 icm response",
+        "incident response",
+        "full icm investigation"
+      ]
+    },
+    
+    "weekly_health_review": {
+      "description": "Comprehensive health report",
+      "steps": [
+        {"agent": "escalation_manager", "action": "query_weekly_icms"},
+        {"agent": "kusto_expert", "action": "run_error_analytics"},
+        {"agent": "work_item_manager", "action": "check_fix_deployments"},
+        {"agent": "tenant_health_monitor", "action": "calculate_risk_scores"}
+      ],
+      "triggers": [
+        "weekly health report",
+        "weekly health review",
+        "weekly review",
+        "health dashboard",
+        "weekly summary",
+        "health review"
+      ]
+    },
+    
+    "customer_investigation": {
+      "description": "Deep-dive customer analysis",
+      "steps": [
+        {"agent": "contacts_escalation_finder", "action": "lookup_customer"},
+        {"agent": "tenant_health_monitor", "action": "check_tenant_health"},
+        {"agent": "support_case_manager", "action": "get_open_cases"},
+        {"agent": "escalation_manager", "action": "find_affecting_icms"},
+        {"agent": "kusto_expert", "action": "query_tenant_telemetry"}
+      ],
+      "triggers": [
+        "customer called",
+        "investigate customer",
+        "customer health check",
+        "tenant investigation"
+      ]
+    },
+    
+    "root_cause_analysis": {
+      "description": "Comprehensive RCA workflow",
+      "steps": [
+        {"agent": "kusto_expert", "action": "collect_telemetry"},
+        {"agent": "escalation_manager", "action": "find_related_icms"},
+        {"agent": "support_case_manager", "action": "find_related_cases"},
+        {"agent": "work_item_manager", "action": "check_code_changes"},
+        {"agent": "continuous_improvement_gemba", "action": "analyze_root_cause"}
+      ],
+      "triggers": [
+        "root cause analysis",
+        "rca workflow",
+        "investigate issue",
+        "deep dive analysis"
+      ]
+    },
+    
+    "executive_briefing": {
+      "description": "Leadership summary generation",
+      "steps": [
+        {"agent": "escalation_manager", "action": "summarize_icm_trends"},
+        {"agent": "support_case_manager", "action": "highlight_pain_points"},
+        {"agent": "work_item_manager", "action": "show_initiative_progress"},
+        {"agent": "tenant_health_monitor", "action": "identify_risks"}
+      ],
+      "triggers": [
+        "executive briefing",
+        "leadership report",
+        "exec summary",
+        "management review"
+      ]
+    },
+    
+    "friday_operations": {
+      "description": "Weekly operational tasks",
+      "steps": [
+        {"agent": "lqe_agent", "action": "generate_friday_reports"},
+        {"agent": "tenant_health_monitor", "action": "run_production_reports"},
+        {"agent": "escalation_manager", "action": "weekly_icm_summary"}
+      ],
+      "triggers": [
+        "friday operations",
+        "weekly ops",
+        "end of week report",
+        "friday routine",
+        "friday workflow"
+      ]
+    },
+    
+    "generate_and_email": {
+      "description": "Generate report and send via email",
+      "steps": [
+        {"agent": "tenant_health_monitor", "action": "generate_report"},
+        {"agent": "email_sender", "action": "send_report_email"}
+      ],
+      "triggers": [
+        "generate and email",
+        "generate and send",
+        "create and email",
+        "run and email",
+        "and send email",
+        "then email"
+      ]
+    },
+    
+    "regional_lqe_workflow": {
+      "description": "Generate regional LQE reports for all regions",
+      "steps": [
+        {"agent": "lqe_agent", "action": "fetch_regional_data"},
+        {"agent": "lqe_agent", "action": "generate_americas_report"},
+        {"agent": "lqe_agent", "action": "generate_emea_report"},
+        {"agent": "lqe_agent", "action": "generate_apac_report"}
+      ],
+      "triggers": [
+        "all regional lqe",
+        "all regions lqe",
+        "regional reports all",
+        "generate all regional"
+      ]
+    },
+    
+    "tsg_gap_workflow": {
+      "description": "TSG gap analysis and documentation",
+      "steps": [
+        {"agent": "icm_agent", "action": "fetch_relevant_icms"},
+        {"agent": "tsg_analyzer", "action": "analyze_gaps"},
+        {"agent": "work_item_manager", "action": "create_tsg_tracking_bugs"}
+      ],
+      "triggers": [
+        "tsg gap workflow",
+        "analyze tsg gaps",
+        "find tsg gaps",
+        "tsg coverage analysis"
+      ]
+    },
+    
+    "refresh_and_report": {
+      "description": "Refresh data from Kusto then generate report",
+      "steps": [
+        {"agent": "kusto_expert", "action": "refresh_icm_data"},
+        {"agent": "kusto_expert", "action": "load_from_kusto"},
+        {"agent": "tenant_health_monitor", "action": "generate_production_report"}
+      ],
+      "triggers": [
+        "refresh and report",
+        "refresh then report",
+        "update and report",
+        "fresh data report"
+      ]
+    },
+    
+    "severity_analysis": {
+      "description": "Analyze incidents by severity level",
+      "steps": [
+        {"agent": "escalation_manager", "action": "query_by_severity"},
+        {"agent": "kusto_expert", "action": "analyze_impact"},
+        {"agent": "escalation_manager", "action": "generate_severity_report"}
+      ],
+      "triggers": [
+        "severity analysis",
+        "analyze by severity",
+        "sev breakdown",
+        "severity report"
+      ]
+    },
+    
+    "customer_deep_dive": {
+      "description": "Complete customer health analysis",
+      "steps": [
+        {"agent": "contacts_escalation_finder", "action": "lookup_customer"},
+        {"agent": "tenant_health_monitor", "action": "check_tenant_health"},
+        {"agent": "support_case_manager", "action": "get_open_cases"},
+        {"agent": "escalation_manager", "action": "find_affecting_icms"},
+        {"agent": "kusto_expert", "action": "query_tenant_telemetry"},
+        {"agent": "purview_product_expert", "action": "analyze_known_issues"}
+      ],
+      "triggers": [
+        "customer deep dive",
+        "complete customer analysis",
+        "full customer health",
+        "comprehensive customer check"
+      ]
+    },
+    
+    "team_performance_review": {
+      "description": "Team ICM performance analysis",
+      "steps": [
+        {"agent": "escalation_manager", "action": "query_team_icms"},
+        {"agent": "kusto_expert", "action": "calculate_metrics"},
+        {"agent": "work_item_manager", "action": "check_bug_resolution"},
+        {"agent": "escalation_manager", "action": "generate_team_report"}
+      ],
+      "triggers": [
+        "team performance",
+        "team analysis",
+        "team metrics",
+        "team review",
+        "for my team"
+      ]
+    }
+  },
+  
+  "common_asks_direct_map": {
+    "reports": {
+      "ic_production_report": "risk_reports/run_ic_report.py",
+      "ic report": "risk_reports/run_ic_report.py",
+      "mcs_production_report": "risk_reports/run_mcs_report.py",
+      "mcs report": "risk_reports/run_mcs_report.py",
+      "friday_lqe": "lqe_agent/generate_friday_reports.py",
+      "friday lqe": "lqe_agent/generate_friday_reports.py",
+      "friday reports": "lqe_agent/generate_friday_reports.py",
+      "regional_lqe": "lqe_agent/generate_regional_lqe_reports.py",
+      "regional lqe": "lqe_agent/generate_regional_lqe_reports.py",
+      "weekly regional": "lqe_agent/run_weekly_regional_reports.py",
+      "apac lqe": "lqe_agent/generate_regional_lqe_reports.py",
+      "emea lqe": "lqe_agent/generate_regional_lqe_reports.py",
+      "americas lqe": "lqe_agent/generate_regional_lqe_reports.py",
+      "apac report": "lqe_agent/generate_regional_lqe_reports.py",
+      "emea report": "lqe_agent/generate_regional_lqe_reports.py",
+      "americas report": "lqe_agent/generate_regional_lqe_reports.py",
+      "by_design_analysis": "icm_agent/run_full_analysis.py",
+      "by design": "icm_agent/run_full_analysis.py",
+      "doc_gap_report": "icm_agent/generate_doc_gap_analysis.py",
+      "doc gaps": "icm_agent/generate_doc_gap_analysis.py",
+      "documentation gaps": "icm_agent/generate_doc_gap_analysis.py",
+      "dlp_specific": "icm_agent/run_dlp_report.py",
+      "dlp report": "icm_agent/run_dlp_report.py",
+      "dlp analysis": "icm_agent/run_dlp_report.py",
+      "tsg gaps": "tsg_system/scripts/tsg_gap_analyzer.py",
+      "tsg analysis": "tsg_system/scripts/tsg_gap_analyzer.py",
+      "automated full report": "risk_reports/automated_full_report.py",
+      "full automation": "risk_reports/automated_full_report.py"
+    },
+    
+    "data_operations": {
+      "fetch_icm_details": "icm_agent/fetch_expanded_icm_details.py",
+      "refresh icm": "risk_reports/refresh_icm_data.py",
+      "refresh data": "risk_reports/refresh_icm_data.py",
+      "load from kusto": "risk_reports/load_from_kusto.py",
+      "kusto load": "risk_reports/load_from_kusto.py",
+      "process_kusto_results": "icm_agent/process_kusto_results.py",
+      "batch_icm_search": "icm_agent/generate_search_parameters.py",
+      "save kusto data": "save_kusto_data_131.py",
+      "convert to csv": "write_all_cases.py"
+    },
+    
+    "automation": {
+      "automated_workflow": "risk_reports/automated_workflow.py",
+      "full workflow": "risk_reports/automated_full_report.py",
+      "complete automation": "risk_reports/automated_full_report.py",
+      "batch_operations": "risk_reports/batch_processor.py",
+      "scheduled_reports": "risk_reports/scheduled_runner.py"
+    },
+    
+    "email_operations": {
+      "send report": "risk_reports/send_report_email.py",
+      "email report": "risk_reports/send_report_email.py",
+      "send lqe email": "lqe_agent/send_regional_lqe_emails.py",
+      "email regional": "lqe_agent/send_regional_lqe_emails.py"
+    }
+  },
+  
+  "routing_priority": [
+    "workflow_shortcuts",
+    "common_asks_direct_map",
+    "routing_patterns"
+  ],
+  
+  "fallback_strategy": {
+    "unknown_intent": "Use orchestrator for multi-agent analysis",
+    "ambiguous": "Ask user to clarify which area: incident/case/workitem/data/customer",
+    "multi_domain": "Route through workflow_shortcuts if pattern matches"
+  }
+}

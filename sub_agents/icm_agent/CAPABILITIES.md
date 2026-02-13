@@ -1,5 +1,7 @@
 # ICM Agent - Capabilities Matrix
 
+**Last Updated:** February 13, 2026
+
 ## Overview
 This document outlines the complete capabilities of the ICM Agent, including supported queries, analyses, and output formats.
 
@@ -10,6 +12,7 @@ This document outlines the complete capabilities of the ICM Agent, including sup
 | Capability | Description | Status | Priority |
 |------------|-------------|--------|----------|
 | **By Design Analysis** | Identify documentation gaps from "By Design" incidents | ✅ Complete | P0 |
+| **Documentation Gap Analysis** 🆕 | Analyze closed ICMs to generate TSG and Learn doc recommendations | ✅ Complete | P0 |
 | **Incident Trends** | Track incident volumes over time | ✅ Complete | P0 |
 | **Top Issues Report** | Most frequent problems by count | ✅ Complete | P0 |
 | **Resolution Pattern Analysis** | How issues are being resolved | ✅ Complete | P1 |
@@ -19,6 +22,82 @@ This document outlines the complete capabilities of the ICM Agent, including sup
 | **CSV Export** | Data export for further analysis | 🔄 Planned | P1 |
 | **Automated Scheduling** | Weekly/monthly automated runs | 🔄 Planned | P2 |
 | **Email Distribution** | Send reports to stakeholders | 🔄 Planned | P2 |
+
+---
+
+## NEW: Documentation Gap Analysis Workflow 🆕
+
+**Added:** February 13, 2026
+
+### Purpose
+Analyze closed ICM incidents where Prevention Type is "Public Documentation" or "TSG Update" to identify documentation gaps and generate concrete, ready-to-paste recommendations for both internal TSGs and public Learn documentation.
+
+### How It Works
+1. **Fetch incidents** via ICM MCP server (closed, with specified Prevention Types)
+2. **Extract structured data** (symptoms, root cause, mitigation, error codes, etc.)
+3. **Discover related TSGs** via Azure DevOps MCP server
+4. **Discover related Learn docs** via web search
+5. **Identify gaps** across 7 topic areas (symptom, detection, mitigation, etc.)
+6. **Generate recommendations** with ready-to-paste text for TSG and Learn updates
+7. **Produce reports** (per-incident and consolidated)
+
+### Gap Types Detected
+- **Missing**: Documentation doesn't exist
+- **Outdated**: Documentation is obsolete
+- **Ambiguous**: Documentation is unclear
+- **Incomplete**: Partial coverage only
+- **Incorrect**: Documentation is wrong
+- **Not customer-safe**: Contains internal info
+- **Coverage mismatch**: TSG vs Learn inconsistency
+
+### Usage
+
+#### Analyze Specific Incidents
+```bash
+python icm_agent.py --doc-gaps --incident-ids 626495494 626495495 626495496
+```
+
+#### Query for Incidents
+```bash
+python icm_agent.py --doc-gaps --days 90 --team-filter PURVIEW
+```
+
+#### Programmatic Use
+```python
+from icm_agent import ICMAgent
+
+agent = ICMAgent()
+results = agent.run_doc_gap_analysis(
+    incident_ids=['626495494', '626495495']
+)
+# or
+results = agent.run_doc_gap_analysis(
+    query_params={
+        'days_back': 90,
+        'prevention_types': ['Public Documentation', 'TSG Update'],
+        'team_filter': 'PURVIEW'
+    }
+)
+```
+
+### Output Reports
+1. **Per-Incident Report**: Detailed analysis with doc alignment matrix, recommendations, work item proposals
+2. **Consolidated Report**: Summary across all incidents with gap distribution and prioritization
+
+### MCP Tools Required
+- `mcp_icm_mcp_eng_get_incident_details` - Fetch incident data
+- `mcp_o365exchange-_search_code` - Search for TSGs in ADO
+- `mcp_o365exchange-_wiki_get_page` - Retrieve TSG content
+- `fetch_webpage` - Search Learn documentation
+
+### Quality & Safety
+- **PII Sanitization**: Removes customer names, emails, tenant IDs
+- **Public/Internal Separation**: TSG recommendations may include internal tools; Learn recommendations are customer-safe only
+- **Traceability**: All recommendations link back to source ICM
+
+### See Also
+- [DOC_GAP_WORKFLOW_README.md](DOC_GAP_WORKFLOW_README.md) - Detailed workflow guide
+- [icm_doc_gap_analyzer.py](icm_doc_gap_analyzer.py) - Implementation
 
 ---
 

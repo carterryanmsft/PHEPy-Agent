@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "model": {
+      "format": "OpenAI",
+      "name": "gpt-4o",
+      "version": "2024-08-06"
+    },
+    "versionUpgradeOption": "OnceCurrentVersionExpired",
+    "raiPolicyName": "Microsoft.Default",
+    "scaleSettings": {
+      "scaleType": "Standard"
+    }
+  }
+}

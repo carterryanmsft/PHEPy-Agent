@@ -1,0 +1,303 @@
+{
+  "orchestrator": {
+    "name": "PHEPy Orchestrator",
+    "version": "1.0.0",
+    "description": "Microsoft Purview Health & Escalation Python-based orchestrator",
+    "endpoint": "https://phepy-resource.services.ai.azure.com",
+    "model_deployment": "phepy-chat"
+  },
+  "sub_agents": [
+    {
+      "id": "incident_management",
+      "name": "escalation_manager",
+      "path": "sub_agents/icm_agent/",
+      "tools": [
+        "icm",
+        "kusto"
+      ],
+      "capabilities": {
+        "patterns": [
+          "icm details",
+          "incident details",
+          "get icm",
+          "analyze icm",
+          "icm timeline",
+          "customer impact",
+          "affected customers",
+          "similar icm",
+          "find related icm",
+          "icm history"
+        ],
+        "quick_actions": [
+          "icm_details",
+          "by_design",
+          "doc_gaps",
+          "dlp_report"
+        ]
+      }
+    },
+    {
+      "id": "support_cases",
+      "name": "support_case_manager",
+      "path": "sub_agents/support_case_manager/",
+      "tools": [
+        "ado_o365exchange",
+        "kusto"
+      ],
+      "capabilities": {
+        "patterns": [
+          "dfm case",
+          "support case",
+          "case tracking",
+          "sla monitoring",
+          "at-risk cases",
+          "case timeline",
+          "case status",
+          "customer case",
+          "case correlation",
+          "link case to icm"
+        ],
+        "quick_actions": [
+          "at_risk",
+          "case_details"
+        ]
+      }
+    },
+    {
+      "id": "work_items",
+      "name": "work_item_manager",
+      "path": "sub_agents/work_item_manager/",
+      "tools": [
+        "ado_asim",
+        "ado_o365exchange"
+      ],
+      "capabilities": {
+        "patterns": [
+          "create bug",
+          "create work item",
+          "ado bug",
+          "track bug",
+          "link to icm",
+          "assign bug",
+          "update work item",
+          "sprint planning",
+          "team velocity",
+          "backlog priority"
+        ],
+        "quick_actions": [
+          "create_bug",
+          "link_to_icm",
+          "search_items"
+        ]
+      }
+    },
+    {
+      "id": "kusto_queries",
+      "name": "kusto_expert",
+      "path": "sub_agents/kusto_expert/",
+      "tools": [
+        "kusto"
+      ],
+      "capabilities": {
+        "patterns": [
+          "query kusto",
+          "run query",
+          "kql",
+          "telemetry",
+          "error patterns",
+          "analyze errors",
+          "tenant health",
+          "usage metrics",
+          "feature adoption",
+          "performance metrics"
+        ],
+        "quick_actions": [
+          "execute_query",
+          "schema_info",
+          "pre_built_queries"
+        ]
+      }
+    },
+    {
+      "id": "customer_health",
+      "name": "tenant_health_monitor",
+      "path": "sub_agents/tenant_health_monitor/",
+      "tools": [
+        "kusto",
+        "icm"
+      ],
+      "capabilities": {
+        "patterns": [
+          "tenant health",
+          "customer health",
+          "health check",
+          "proactive monitoring",
+          "risk report",
+          "production report",
+          "ic report",
+          "mcs report",
+          "customer metrics",
+          "tenant status"
+        ],
+        "quick_actions": [
+          "ic_report",
+          "mcs_report",
+          "health_check"
+        ]
+      }
+    },
+    {
+      "id": "product_knowledge",
+      "name": "purview_product_expert",
+      "path": "sub_agents/purview_product_expert/",
+      "tools": [
+        "ado_o365exchange_wiki"
+      ],
+      "capabilities": {
+        "patterns": [
+          "how does",
+          "explain",
+          "what is",
+          "sensitivity label",
+          "dlp policy",
+          "retention",
+          "encryption",
+          "auto-labeling",
+          "feature capability",
+          "architecture"
+        ],
+        "quick_actions": [
+          "search_knowledge"
+        ]
+      }
+    },
+    {
+      "id": "contacts_lookup",
+      "name": "contacts_escalation_finder",
+      "path": "sub_agents/contacts_escalation_finder/",
+      "tools": [
+        "icm"
+      ],
+      "capabilities": {
+        "patterns": [
+          "find contact",
+          "who is",
+          "team contact",
+          "escalation path",
+          "account team",
+          "customer contact",
+          "reach out to",
+          "notify",
+          "email address",
+          "team roster"
+        ],
+        "quick_actions": [
+          "lookup_contact"
+        ]
+      }
+    },
+    {
+      "id": "onboarding",
+      "name": "program_onboarding_manager",
+      "path": "sub_agents/program_onboarding_manager/",
+      "tools": [],
+      "capabilities": {
+        "patterns": [
+          "onboard customer",
+          "new customer",
+          "ic setup",
+          "mcs setup",
+          "create onboarding plan",
+          "milestone tracking",
+          "checklist",
+          "readiness assessment",
+          "kickoff plan"
+        ],
+        "quick_actions": [
+          "create_plan"
+        ]
+      }
+    },
+    {
+      "id": "continuous_improvement",
+      "name": "continuous_improvement_gemba",
+      "path": "sub_agents/continuous_improvement_gemba/",
+      "tools": [
+        "kusto"
+      ],
+      "capabilities": {
+        "patterns": [
+          "process improvement",
+          "waste elimination",
+          "gemba walk",
+          "value stream",
+          "bottleneck",
+          "efficiency",
+          "lean",
+          "kaizen",
+          "root cause",
+          "5 whys"
+        ],
+        "quick_actions": [
+          "gemba_analysis"
+        ]
+      }
+    },
+    {
+      "id": "lqe_monitoring",
+      "name": "lqe_agent",
+      "path": "sub_agents/lqe_agent/",
+      "tools": [
+        "icm",
+        "kusto"
+      ],
+      "capabilities": {
+        "patterns": [
+          "low quality escalation",
+          "lqe",
+          "friday report",
+          "weekly lqe",
+          "regional report",
+          "lqe trends",
+          "escalation quality",
+          "apac",
+          "emea",
+          "americas"
+        ],
+        "quick_actions": [
+          "friday_report",
+          "regional_report",
+          "weekly_regional",
+          "send_emails"
+        ]
+      }
+    },
+    {
+      "id": "tsg_management",
+      "name": "tsg_analyzer",
+      "path": "tsg_system/",
+      "tools": [
+        "icm",
+        "ado_o365exchange_wiki"
+      ],
+      "capabilities": {
+        "patterns": [
+          "tsg gaps",
+          "tsg gap",
+          "tsg coverage",
+          "tsg analysis",
+          "troubleshooting guide",
+          "tsg effectiveness",
+          "missing tsg",
+          "tsg workflow",
+          "create tsg",
+          "update tsg"
+        ],
+        "quick_actions": [
+          "gap_analysis",
+          "gap_workflow"
+        ]
+      }
+    }
+  ]
+}
