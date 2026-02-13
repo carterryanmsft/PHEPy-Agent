@@ -3,8 +3,11 @@
     "name": "PHEPy Orchestrator",
     "version": "1.0.0",
     "description": "Microsoft Purview Health & Escalation Python-based orchestrator",
-    "endpoint": "https://phepy-resource.services.ai.azure.com",
-    "model_deployment": "phepy-chat"
+    "endpoint": "https://phepy-resource.services.ai.azure.com/api/projects/phepy",
+    "resource_group": "rg-PHEPy",
+    "subscription_id": "82b24542-e1a0-441c-845a-f5677d342450",
+    "resource_id": "/subscriptions/82b24542-e1a0-441c-845a-f5677d342450/resourceGroups/rg-PHEPy/providers/Microsoft.CognitiveServices/accounts/phepy-resource/projects/phepy",
+    \"model_deployment\": \"phepy-gpt4o\"
   },
   "sub_agents": [
     {

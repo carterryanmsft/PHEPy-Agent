@@ -18,8 +18,10 @@ except ImportError:
 # Foundry project configuration
 SUBSCRIPTION_ID = "82b24542-e1a0-441c-845a-f5677d342450"  # Visual Studio Enterprise
 RESOURCE_GROUP = "rg-PHEPy"
-WORKSPACE_NAME = "phepy"
-PROJECT_ENDPOINT = "https://phepy-resource.services.ai.azure.com"
+WORKSPACE_NAME = "phepy-resource"  # AI Services account name
+PROJECT_NAME = "phepy"
+PROJECT_ENDPOINT = "https://phepy-resource.services.ai.azure.com/api/projects/phepy"
+RESOURCE_ID = "/subscriptions/82b24542-e1a0-441c-845a-f5677d342450/resourceGroups/rg-PHEPy/providers/Microsoft.CognitiveServices/accounts/phepy-resource/projects/phepy"
 
 def get_ml_client():
     """Connect to Azure AI Foundry workspace"""
