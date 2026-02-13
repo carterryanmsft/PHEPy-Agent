@@ -60,13 +60,7 @@ def fetch_lqe_data():
     | where EscalationQuality != "All Data Provided"
     | where isempty(ReviewerName) or ReviewerName == ""
     | where QualityReviewFalsePositive != "Yes" or isempty(QualityReviewFalsePositive)
-    | extend OriginRegion = case(
-        TimeZone in~ ("PST", "pst", "PDT", "EST", "CST", "MST", "PT", "ET", "Pacific", "Pacific Time", "East US"), "Americas",
-        TimeZone in~ ("CET", "CEST", "GMT", "BST", "EET", "EEST", "UTC", "UTC+1", "UTC+2", "UTC+3", "EMEA", "EU", "GTB", "Central Europe Standard"), "EMEA",
-        TimeZone in~ ("IST", "ist", "JST", "KST", "AEST", "APAC", "UTC+7", "UTC+8", "IDC", "ICT (UTC+7)", "GMT+8"), "APAC",
-        isempty(TimeZone), "Unknown",
-        "Unknown"
-    )
+    | extend OriginRegion = "Unknown"
     | extend FeatureAreaCategory = case(
         OwningTeam contains "DLP" or OwningTeam contains "MIP" or OwningTeam contains "InformationProtection" or OwningTeam contains "RMS" or OwningTeam contains "SensitivityLabels" or OwningTeam contains "Classification" or OwningTeam contains "ExactDataMatch" or OwningTeam contains "EDM" or OwningTeam contains "ServerSideAutoLabeling" or OwningTeam contains "InformationBarriers" or OwningTeam contains "TrainableClassifiers", "MIP/DLP",
         OwningTeam contains "DLM" or OwningTeam contains "Lifecycle" or OwningTeam contains "Retention" or OwningTeam contains "Records", "DLM",
@@ -125,16 +119,19 @@ def fetch_lqe_data():
                     value = value.isoformat()
                 record[col] = value
             
-            # Apply engineer region mapping if region is Unknown
-            if record.get('OriginRegion') == 'Unknown':
-                created_by = record.get('CreatedBy', '')
-                if created_by in engineer_mapping:
-                    record['OriginRegion'] = engineer_mapping[created_by]
-            
             results.append(record)
         
+        # Apply engineer region mapping to all escalations
+        mapped_count = 0
+        for record in results:
+            created_by = record.get('CreatedBy', '')
+            if created_by in engineer_mapping:
+                record['OriginRegion'] = engineer_mapping[created_by]
+                mapped_count += 1
+        
         print(f"✓ Query successful! Retrieved {len(results)} escalations")
-        print(f"✓ Applied support engineer region mapping to {len(engineer_mapping)} known engineers")
+        print(f"✓ Applied support engineer region mapping: {mapped_count}/{len(results)} escalations mapped")
+        print(f"✓ Engineer mapping database contains {len(engineer_mapping)} known engineers")
         
         # Save to file
         output_dir = os.path.join(os.path.dirname(__file__), 'data')

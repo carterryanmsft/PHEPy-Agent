@@ -84,14 +84,40 @@ class WeeklyRegionalLQEAutomation:
             return None
     
     def load_data(self, data_file: str) -> List[Dict]:
-        """Load LQE data from JSON file."""
+        """Load LQE data from JSON file and apply engineer region mapping."""
         with open(data_file, 'r') as f:
             data = json.load(f)
         
         # Handle both list and dict formats
         if isinstance(data, dict):
-            return data.get('data', [])
+            data = data.get('data', [])
+        
+        # Load engineer region mapping
+        engineer_mapping = self._load_engineer_mapping()
+        
+        # Apply engineer region mapping
+        mapped_count = 0
+        for record in data:
+            if record.get('OriginRegion') == 'Unknown':
+                created_by = record.get('CreatedBy', '')
+                if created_by in engineer_mapping:
+                    record['OriginRegion'] = engineer_mapping[created_by]
+                    mapped_count += 1
+        
+        if mapped_count > 0:
+            print(f"✓ Applied engineer region mapping: {mapped_count} escalations remapped")
+        
         return data
+    
+    def _load_engineer_mapping(self) -> Dict[str, str]:
+        """Load support engineer to region mapping."""
+        mapping_file = os.path.join(os.path.dirname(__file__), 'support_engineer_regions.json')
+        if os.path.exists(mapping_file):
+            with open(mapping_file, 'r') as f:
+                config = json.load(f)
+                # Filter out comment keys
+                return {k: v for k, v in config['mappings'].items() if not k.startswith('_comment')}
+        return {}
     
     def generate_regional_reports(self, data_file: str) -> Dict[str, str]:
         """
