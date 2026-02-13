@@ -1,0 +1,117 @@
+Customer Reliability Engineering (CRE) Pilot – Comprehensive Summary
+1. Context & Problem Statement
+Microsoft Security now supports 1.4–1.5M customers globally, with 900k using four or more security workloads. Despite scale and product breadth (50+ security products across Defender, Sentinel, Entra, Purview, Intune), customer experience is inconsistent due to:
+
+Gaps in product quality
+Slow or ineffective support responsiveness
+Lack of tenant‑level visibility into customer‑specific outages
+
+Core issue:
+Service Reliability Engineering (SRE) monitors platform‑wide health but fails to detect tenant‑specific outages. A large tenant can experience a severe incident while global dashboards remain “green.”
+Examples referenced include EY, where high-severity breakdowns (data exfiltration, DLP gaps, unannounced backend changes, payroll impacts) led to executive‑level escalations, degraded confidence, and an escalation rate 3× the S500 average.
+
+2. Why SRE Is Not Enough
+SRE detects issues at the service-wide level, not per customer. This creates blind spots:
+
+Minor‑looking degradations at platform level can be critical failures at tenant level.
+Only 8% of major outages were auto‑detected by current monitors.
+Manually detected issues had 6.7‑day time-to-detect, vs. 2.5 hours for auto‑detect.
+
+Customers continue to report issues before Microsoft detects them — eroding trust and extending downtime.
+
+3. CRE – Proposed Solution
+Customer Reliability Engineering (CRE) shifts Microsoft from reactive support to proactive tenant‑level reliability assurance. Originating from Google (2016) and later Azure (2018), CRE treats reliability as a shared responsibility with customers.
+Primary goal:
+Ensure top 50–100 mission‑critical tenants have continuous tenant‑specific monitoring, rapid detection, and automated incident response.
+Strategic intent:
+“Anticipate, amplify and systemically solve customer needs.”
+Expected benefits
+
+Higher customer confidence via fewer fire drills
+Operational excellence through faster detection & mitigation
+Proactive prevention of customer downtime
+
+CRE is NOT duplicating SRE work — it extends monitoring down to the tenant level.
+
+4. Pilot Scope & Principles
+Pilot tenant selection prioritizes:
+
+Mission Critical Services (MCS) customers
+Tenants with the highest SEV1/SEV A activity, especially in MDE and Purview
+
+The approach mirrors proven models (e.g., SharePoint Online monitors ~1,000 key tenants for QoS).
+
+5. Proposed Workflow (Steps 1–7)
+A clear proactive monitoring & alerting pipeline:
+Step 1 — Define Tenant‑Specific Metrics
+Co-design SLIs/SLOs with engineering, e.g.:
+
+Identity login success rate
+DLP policy creation throttling
+Defender client update failures
+
+Step 2 — Telemetry Augmentation
+Introduce a “Key Tenants” configuration so core telemetry systems treat these tenants as first‑class objects.
+Step 3 — Threshold Breach Detection
+Real‑time detection of anomalies tied to tenant health, not global metrics.
+Step 4 — Automated Incident Creation
+Power Automate / Copilot Agents create Sev‑2.5 ICM tickets automatically when thresholds breach.
+Step 5 — CRE Rapid Response
+A 24x7 on‑call CRE team responds within <15 minutes, mirroring live‑site operations.
+Step 6 — Proactive Customer Engagement
+Coordinated notifications to CSAMs + support teams:
+“We detected an issue in your environment and are addressing it now.”
+Transform outages into trust‑building moments.
+Step 7 — Mitigation & Continuous Improvement
+Every alert undergoes:
+
+False-positive review
+Monitor calibration
+Postmortem analysis
+
+Helps reduce noise, improve signal quality, and refine thresholds.
+
+6. Organizational Considerations & Debates
+Feedback (captured in comments across the doc) highlights:
+
+Overlap with proposals for an MCS Operations Center
+Need to clarify division of responsibilities between Engineering, CxE, and CARE
+Concerns about scalability and avoiding duplication of engineering telemetry
+A case for starting with workload-first, then expanding by customer
+Need for trusted customer communication channels (beyond CSAM de‑relay)
+
+
+7. Strategic Alignment
+CRE aligns to:
+
+Microsoft’s mission to improve product reliability
+Azure’s CRE best practices
+Existing CxE live-site culture
+Customer trust initiatives
+Reduced escalation overhead and engineering firefighting
+
+
+8. Expected Outcomes
+
+Significant reduction in customer‑reported critical incidents
+Improved time-to-detect and time-to-mitigate
+Better product signals for engineering
+Stronger executive trust within top accounts
+Lower support cost and critical escalation volume
+Accelerated ability to detect real‑world product degradation
+
+
+9. Next Steps
+Within the next quarter:
+
+Align with LT + engineering LTs
+Stand up a cross-functional CRE task force
+Launch pilot with first 10 tenants
+Define tenant metrics per workload
+Configure monitoring & alerting
+Demonstrate early wins within 3 months
+Scale to 50 tenants in one year, backed by measurable reductions in critical incidents
+
+
+Executive 1‑Page Summary (Copy/Paste‑Ready)
+The CRE Pilot introduces tenant‑level monitoring and automated incident response for Microsoft’s top mission‑critical security customers. Today, only ~8% of major outages are auto-detected, and tenant‑specific degradation often goes unnoticed for days. By establishing a Key Tenant framework, defining workload-specific health indicators, and enabling automated Sev‑2.5 incident creation, CRE shifts Microsoft from reactive escalation handling to proactive reliability assurance. A 24x7 CRE on-call team will respond within <15 minutes and partner with CSAMs to deliver trust‑building proactive communications. Within 12 months, the program aims to onboard 50+ tenants, reduce customer-reported incidents, improve TTD/TTM metrics, and deliver significantly better customer outcomes across Purview, MDE, Intune, and Entra.

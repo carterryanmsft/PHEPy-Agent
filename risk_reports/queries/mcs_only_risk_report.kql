@@ -1,0 +1,62 @@
+// MCS (Mission Critical Support) High-Risk Case Report
+// Optimized query for MCS customers only
+let MCSTenants = datatable(TopParentName:string, TPID:int, TenantId:string, CLE:string, PHE:string, Program:string)
+[
+    "Barclays Bank", 646022, "dea8b18e-27be-4481-84da-00f892b8edde", "Palanivel Sambath", "", "MCS",
+    "Morgan Stanley", 649843, "2b3702c6-0dfe-482a-85fe-65a64609b61b", "Rahul Raman", "", "MCS",
+    "Morgan Stanley", 649843, "c2b48352-35e3-4af3-8d02-d8e9aa5c5455", "Rahul Raman", "", "MCS",
+    "Amazon", 634973, "e3ca9e49-1e8f-4bf6-8339-9ba4ea78e765", "Kartik Goenka", "", "MCS",
+    "EY", 690095, "5b973f99-c27b-4bd2-a341-ce4d21a234dd", "Vishnu Sagar", "", "MCS",
+    "EY", 690095, "d06dae19-d46e-4ba0-ae22-49e33c3fe181", "Vishnu Sagar", "", "MCS",
+    "ADNOC", 693159, "85e5821f-4e59-4d65-8d5e-2da2fdb5c1a2", "Vishnu Sagar", "", "MCS"
+];
+GetSCIMIncidentV2
+| where ServiceRequestState != "Closed"
+| where ProductName == "Microsoft Purview Compliance"
+| join kind=inner MCSTenants on TenantId
+// Split and expand ICM IDs to filter out SCIM Escalation Management
+| extend ICMList = split(RelatedICM_Id, ",")
+| mv-expand ICMId = ICMList to typeof(long)
+| join kind=leftouter (
+    cluster('icmcluster').database('IcmDataWarehouse').Incidents
+    | summarize arg_max(ModifiedDate, OwningTenantName) by IncidentId
+    | where OwningTenantName != "SCIM Escalation Management"
+    | project IncidentId
+) on $left.ICMId == $right.IncidentId
+| where isnotnull(IncidentId) or isempty(RelatedICM_Id)
+| summarize RelatedICM_Id = strcat_array(make_list(ICMId), ",") by 
+    ServiceRequestNumber, ServiceRequestStatus, ServiceRequestState,
+    TenantId, TopParentName, SAPPath,
+    PHE, CLE, AgentAlias, ManagerEmail, ServiceRequestCurrentSeverity, CreatedTime,
+    CaseAge, OwnershipCount, TransferCount, ReopenCount, IsCritSit,
+    TPID, CaseUri, ModifiedDate
+| extend DaysOpen = todouble(CaseAge)
+| where DaysOpen >= 20  // Cases 20+ days old
+// Calculate idle period (days since last modification)
+| extend DaysSinceUpdate = datetime_diff('day', now(), ModifiedDate)
+| extend HasICM = iff(isnotempty(RelatedICM_Id), "Yes", "No")
+| project 
+    ModifiedDate,
+    ServiceRequestNumber,
+    CaseUrl = CaseUri,
+    ServiceRequestStatus,
+    ServiceRequestState,
+    TenantId,
+    TopParentName,
+    SAPPath,
+    PHE,
+    CLE,
+    AgentAlias,
+    ManagerEmail,
+    ServiceRequestCurrentSeverity,
+    CreatedTime,
+    DaysOpen,
+    DaysSinceUpdate,
+    OwnershipCount,
+    TransferCount,
+    ReopenCount,
+    RelatedICM_Id,
+    HasICM,
+    IsCritSit,
+    TPID
+| order by DaysOpen desc

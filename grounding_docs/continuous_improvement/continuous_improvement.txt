@@ -1,0 +1,29 @@
+
+Continuous Improvement (CI) + AI create exponential value at Microsoft through disciplined process improvement, automation, insights, and cultural behaviors.
+
+CI + AI Value:
+- For People: less toil, more meaningful work, growth.
+- For Company: improved performance, faster value.
+- For Customers: stronger outcomes.
+
+Team Purpose:
+Empower teams to improve processes using AI + CI to accelerate growth and performance.
+
+Eight Wastes (DOWNTIME):
+Defects, Overproduction, Waiting, Neglected Creativity, Transportation, Inventory, Motion, Extra Processing.
+
+Value Categories:
+- Value‑Add
+- Required Non‑Value‑Add
+- Waste
+
+Example workflow categorizes steps into these value types.
+
+Finance UAT example shows significant cycle‑time reduction through automation and standardization.
+
+High‑Performing CI System:
+- PDCA cycle
+- Root cause analysis
+- Kaizen
+- Accountability
+- Sustained results

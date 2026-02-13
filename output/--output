@@ -1,0 +1,1364 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=unicode">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<title>IC/MCS Case Risk Report - 2026-02-09</title>
+<style>
+body { font-family: Segoe UI, sans-serif; margin: 20px; }
+h1 { font-size: 18pt; color: #1F4E78; font-weight: bold; margin-top: 20px; }
+h2 { font-size: 14pt; color: #2E75B5; font-weight: bold; margin-top: 15px; margin-bottom: 10px; }
+table { width: 100%; background: white; border-collapse: collapse; margin-bottom: 20px; table-layout: fixed; }
+thead td { background: #B7D9F7; border: solid #7EA8F8 1.0pt; padding: 4pt 6pt; font-weight: bold; font-size: 10pt; text-align: center; vertical-align: middle; }
+tbody td { border: solid #7EA8F8 1.0pt; padding: 4pt 6pt; font-size: 9pt; text-align: center; vertical-align: middle; word-wrap: break-word; }
+tbody td.left-align { text-align: left; }
+tbody td.nowrap { white-space: nowrap; }
+a { color: #0563C1; text-decoration: underline; }
+.critical { background: #FFC7CE; color: #9C0006; font-weight: bold; }
+.high { background: #FFF2CC; color: #9C6500; font-weight: bold; }
+.medium { background: #C6EFCE; color: #006100; }
+.low { background: #F0F0F0; color: #3F3F76; }
+/* Column widths for summary table */
+table.summary-table { table-layout: auto; }
+table.summary-table td:nth-child(1) { width: 15%; }
+table.summary-table td:nth-child(2) { width: 15%; }
+table.summary-table td:nth-child(3) { width: 20%; }
+table.summary-table td:nth-child(4) { width: 20%; }
+/* Column widths for case tables - removed Product column, shrunk all */
+table.case-table td:nth-child(1) { width: 8%; }  /* Case ID */
+table.case-table td:nth-child(2) { width: 12%; } /* Status */
+table.case-table td:nth-child(3) { width: 5%; }  /* Age */
+table.case-table td:nth-child(4) { width: 8%; }  /* Owner */
+table.case-table td:nth-child(5) { width: 8%; }  /* Manager */
+table.case-table td:nth-child(6) { width: 7%; }  /* Risk */
+table.case-table td:nth-child(7) { width: 25%; } /* Summary */
+table.case-table td:nth-child(8) { width: 9%; }  /* ICM */
+table.case-table td:nth-child(9) { width: 8%; }  /* ICM Owner */
+table.case-table td:nth-child(10) { width: 8%; } /* ICM Status */
+/* ICM Status color coding */
+.icm-active { color: #f57c00; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<h1>IC/MCS Case Risk Report - February 09, 2026</h1>
+
+<p><strong>Report Generated:</strong> 2026-02-09 10:26:38</p>
+<p><strong>Total Cases:</strong> 73 | <strong>Customers:</strong> 14</p>
+
+<h2>Risk Level Summary</h2>
+<table class="summary-table" style="width: 60%;">
+<thead>
+<tr>
+<td>Risk Level</td>
+<td>Case Count</td>
+<td>Avg Days Open</td>
+<td>Avg Risk Score</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="critical">Critical</td>
+<td>6</td>
+<td>238.8</td>
+<td>88.3</td>
+</tr>
+<tr>
+<td class="high">High</td>
+<td>19</td>
+<td>148.3</td>
+<td>65.7</td>
+</tr>
+<tr>
+<td class="medium">Medium</td>
+<td>31</td>
+<td>66.5</td>
+<td>46.7</td>
+</tr>
+<tr>
+<td class="low">Low</td>
+<td>17</td>
+<td>40.1</td>
+<td>30.4</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Huntington (IC) - 5 Case(s) - Max Risk: 95</h2>
+<p><strong>PHE:</strong> Hemanth Varyani | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=fb7b8b77-50a0-f011-b41b-002248233bcc">2510030040002408</a></td>
+<td>Waiting for customer confirmation</td>
+<td>128</td>
+<td>vickievo</td>
+<td>karimatson</td>
+<td class="critical">95</td>
+<td class="left-align">Case is 127 days old, status is Waiting for customer confirmation, ICM present: Yes. Extremely high ownership (11) and transfer (10) counts indicate severe instability.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/693849812/home" class="">693849812</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/693543577/home" class="">693543577</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694142803/home" class="">694142803</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694208210/home" class="">694208210</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694253124/home" class="">694253124</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/693952482/home" class="">693952482</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694041459/home" class="">694041459</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=965f63ee-79ea-f011-8544-000d3a572dbe">2601050040010257</a></td>
+<td>Pending customer response</td>
+<td>33</td>
+<td>v-kajibola</td>
+<td>v-fyusuf</td>
+<td class="medium">59</td>
+<td class="left-align">Case is 33 days old, status is Pending customer response, ICM present: Yes. High ownership (7) and transfer (6) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000857269/home" class="">21000000857269</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=e72fd03e-7fb3-f011-bbd2-002248258833">2510270040012508</a></td>
+<td>Waiting for product team</td>
+<td>103</td>
+<td>v-eokewumi</td>
+<td>v-fyusuf</td>
+<td class="medium">55</td>
+<td class="left-align">Case is 103 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/704668547/home" class="">704668547</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000859513/home" class="">51000000859513</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=fa513880-ffd9-f011-8544-7c1e520241f9">2512150040010968</a></td>
+<td>Waiting for customer confirmation</td>
+<td>54</td>
+<td>v-rsumanth</td>
+<td>v-thahame</td>
+<td class="medium">40</td>
+<td class="left-align">Case is 54 days old, status is Waiting for customer confirmation, ICM present: No. Ownership (5) and transfer (4) counts add to risk.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=9a9395b2-ccec-f011-8544-00224826bf56">2601080040009966</a></td>
+<td>Troubleshooting</td>
+<td>30</td>
+<td>v-quatran</td>
+<td>v-truongng</td>
+<td class="low">31</td>
+<td class="left-align">Case is 30 days old, status is Troubleshooting, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>State of WA (IC) - 5 Case(s) - Max Risk: 95</h2>
+<p><strong>PHE:</strong> Kanika Kapoor | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=87daacd5-8ea0-f011-b41b-7c1e521c8a83">2510030010001581</a></td>
+<td>Pending customer response</td>
+<td>127</td>
+<td>avbaker</td>
+<td>karimatson</td>
+<td class="critical">95</td>
+<td class="left-align">Case is 127 days old, status is Pending customer response, ICM present: Yes. High ownership (7) and transfer (6) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/725859865/home" class="">725859865</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/731225498/home" class="">731225498</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/695639748/home" class="">695639748</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=bc989a46-01e5-f011-8544-00224826b6e9">2512290010001189</a></td>
+<td>Pending customer response</td>
+<td>40</td>
+<td>jhonngu</td>
+<td>chriscasares</td>
+<td class="medium">50</td>
+<td class="left-align">Case is 40 days old, status is Pending customer response, ICM present: Yes. Ownership (4) and transfer (3) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/737553612/home" class="">737553612</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=22e45bb2-05d6-f011-8544-00224826b076">2512100010001950</a></td>
+<td>Waiting for customer confirmation</td>
+<td>59</td>
+<td>malopezg</td>
+<td>daarroy</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 59 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/730007060/home" class="">730007060</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=d40fca1f-20ec-f011-8544-7c1e526482b6">2601070010002426</a></td>
+<td>Waiting for product team</td>
+<td>31</td>
+<td>avbaker</td>
+<td>karimatson</td>
+<td class="low">31</td>
+<td class="left-align">Case is 31 days old, status is Waiting for product team, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=81eea3bf-b7f1-f011-8407-7c1e520241f9">2601150010000244</a></td>
+<td>Waiting for customer confirmation</td>
+<td>24</td>
+<td>eduardoal</td>
+<td>ribhar</td>
+<td class="low">27</td>
+<td class="left-align">Case is 24 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000874156/home" class="">21000000874156</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Vodafone (IC) - 4 Case(s) - Max Risk: 87</h2>
+<p><strong>PHE:</strong> Josef Ibarra | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=b60c7b5e-3a20-f011-998a-000d3a270bcf">2504231420002138</a></td>
+<td>Troubleshooting</td>
+<td>291</td>
+<td>mohammadosta</td>
+<td>raesteph</td>
+<td class="critical">87</td>
+<td class="left-align">Case is 290 days old, status is Troubleshooting, ICM present: Yes. High ownership (6) and transfer (5) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/680275765/home" class="">680275765</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000779414/home" class="">51000000779414</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/628032426/home" class="">628032426</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=a7eb0c2e-17b0-f011-bbd2-000d3aab2bdf">2510231420002568</a></td>
+<td>Waiting for customer confirmation</td>
+<td>108</td>
+<td>sfusinaz</td>
+<td>raesteph</td>
+<td class="high">60</td>
+<td class="left-align">Case is 107 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/730643690/home" class="">730643690</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/703638418/home" class="">703638418</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=badd7a36-67c4-f011-bbd3-000d3aab2bdf">2511181420001167</a></td>
+<td>Pending customer response</td>
+<td>82</td>
+<td>haghai</td>
+<td>raesteph</td>
+<td class="medium">45</td>
+<td class="left-align">Case is 81 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/731465585/home" class="">731465585</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=b1e477a3-83ec-f011-8544-7ced8d5d3ac2">2601081420001577</a></td>
+<td>Pending customer response</td>
+<td>31</td>
+<td>haghai</td>
+<td>raesteph</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 30 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000865629/home" class="">51000000865629</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>BHP (IC) - 2 Case(s) - Max Risk: 87</h2>
+<p><strong>PHE:</strong> Manaswi Upadhyaya K | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=c731fb89-697a-ef11-a671-7c1e52156bb8">2409240030008299</a></td>
+<td>Waiting for product team</td>
+<td>502</td>
+<td>vibhavjain</td>
+<td>robrahma</td>
+<td class="critical">87</td>
+<td class="left-align">Case is 501 days old, status is Waiting for product team, ICM present: Yes. High ownership (7) and transfer (6) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/616515906/home" class="">616515906</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/554844287/home" class="">554844287</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=e8fb5fef-3fed-f011-8544-002248258458">2601090030005190</a></td>
+<td>Pending customer response</td>
+<td>30</td>
+<td>shakibkhan</td>
+<td>manishka</td>
+<td class="low">36</td>
+<td class="left-align">Case is 29 days old, status is Pending customer response, ICM present: Yes. Ownership (4) and transfer (3) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000883229/home" class="">51000000883229</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Ford (IC) - 10 Case(s) - Max Risk: 83</h2>
+<p><strong>PHE:</strong> Ron Mustard | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=da88ff66-b568-f011-bec2-0022482bc9b2">2507240040008728</a></td>
+<td>Mitigated</td>
+<td>198</td>
+<td>atulpalsaini</td>
+<td>ribhar</td>
+<td class="critical">83</td>
+<td class="left-align">Case is 198 days old, status is Mitigated, ICM present: Yes. Ownership (5) and transfer (4) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/718245595/home" class="">718245595</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/676151538/home" class="">676151538</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=622bbaea-f967-f011-bec2-000d3a9b46ea">2507230040011081</a></td>
+<td>Pending customer response</td>
+<td>199</td>
+<td>gsteele</td>
+<td>ribhar</td>
+<td class="high">79</td>
+<td class="left-align">Case is 199 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/720978920/home" class="">720978920</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=790f3968-4ba2-f011-bbd2-00224826b29b">2510060040000051</a></td>
+<td>Waiting for product team</td>
+<td>125</td>
+<td>vibrown</td>
+<td>juliedunn</td>
+<td class="high">67</td>
+<td class="left-align">Case is 125 days old, status is Waiting for product team, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/703334015/home" class="">703334015</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=0e83dbd4-019b-f011-b4cb-000d3a8a611e">2509260040008123</a></td>
+<td>Pending customer response</td>
+<td>134</td>
+<td>inbals</td>
+<td>ansandu</td>
+<td class="high">62</td>
+<td class="left-align">Case is 134 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/727649324/home" class="">727649324</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=91311019-859d-f011-b41b-0022482330e1">2509290040013110</a></td>
+<td>Waiting for product team</td>
+<td>131</td>
+<td>osmadrig</td>
+<td>daarroy</td>
+<td class="high">62</td>
+<td class="left-align">Case is 131 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000851272/home" class="">21000000851272</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694613798/home" class="">694613798</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=505c38db-cfc3-f011-bbd3-7ced8d1c7d16">2511170040005738</a></td>
+<td>Pending customer response</td>
+<td>83</td>
+<td>anujmishra</td>
+<td>robrahma</td>
+<td class="medium">53</td>
+<td class="left-align">Case is 82 days old, status is Pending customer response, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000890259/home" class="">21000000890259</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=19181383-3bca-f011-bbd3-7c1e520d3891">2511250010001854</a></td>
+<td>Waiting for customer confirmation</td>
+<td>74</td>
+<td>adrianmor</td>
+<td>daarroy</td>
+<td class="medium">45</td>
+<td class="left-align">Case is 74 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/720089608/home" class="">720089608</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=fe97a402-aae9-f011-8544-7c1e520d303e">2601040040001372</a></td>
+<td>Waiting for product team</td>
+<td>34</td>
+<td>ianme</td>
+<td>erickq</td>
+<td class="medium">40</td>
+<td class="left-align">Case is 34 days old, status is Waiting for product team, ICM present: No. Ownership (3) and transfer (2) counts add to risk.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=13cda7dd-69f1-f011-8406-7c1e52024c31">2601140030007725</a></td>
+<td>Waiting for product team</td>
+<td>24</td>
+<td>anujmishra</td>
+<td>robrahma</td>
+<td class="low">27</td>
+<td class="left-align">Case is 24 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000865306/home" class="">21000000865306</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=26f61cb2-67f1-f011-8406-7c1e5202421f">2601140030007677</a></td>
+<td>Pending customer response</td>
+<td>24</td>
+<td>navadlamudi</td>
+<td>manishka</td>
+<td class="low">17</td>
+<td class="left-align">Case is 24 days old, status is Pending customer response, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>MUFJ (IC) - 14 Case(s) - Max Risk: 83</h2>
+<p><strong>PHE:</strong> Salonie Vyas | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=333b0df4-a371-f011-bec2-000d3a17bf54">2508050030001375</a></td>
+<td>Waiting for customer confirmation</td>
+<td>187</td>
+<td>kazukiizaki</td>
+<td>kundolee</td>
+<td class="critical">83</td>
+<td class="left-align">Case is 187 days old, status is Waiting for customer confirmation, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694997702/home" class="">694997702</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/670828774/home" class="">670828774</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=c0494f1c-f794-ef11-8a69-6045bdd7e478">2410280030004153</a></td>
+<td>Waiting for product team</td>
+<td>468</td>
+<td>kakojima</td>
+<td>kundolee</td>
+<td class="high">64</td>
+<td class="left-align">Case is 467 days old, status is Waiting for product team, ICM present: No. Ownership (3) and transfer (2) counts add to risk.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=d4a4068f-fbd0-f011-bbd3-000d3a5727db">2512040030006423</a></td>
+<td>Waiting for customer confirmation</td>
+<td>66</td>
+<td>takojio</td>
+<td>kundolee</td>
+<td class="high">63</td>
+<td class="left-align">Case is 65 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/724667306/home" class="">724667306</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=ec1b3275-0178-f011-b4cc-000d3a17bf54">2508130030002266</a></td>
+<td>Waiting for customer confirmation</td>
+<td>179</td>
+<td>kakojima</td>
+<td>kundolee</td>
+<td class="high">62</td>
+<td class="left-align">Case is 178 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/686606637/home" class="">686606637</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=808d96df-1fc4-f011-bbd3-002248258052">2511180030000795</a></td>
+<td>Waiting for product team</td>
+<td>82</td>
+<td>komatsuyuta</td>
+<td>kundolee</td>
+<td class="medium">57</td>
+<td class="left-align">Case is 82 days old, status is Waiting for product team, ICM present: Yes. Ownership (4) and transfer (3) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/712920521/home" class="">712920521</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=4ae96a04-9db3-f011-bbd3-000d3a572d0b">2510280030000611</a></td>
+<td>Initial contact pending</td>
+<td>103</td>
+<td>hideyukiwada</td>
+<td>kundolee</td>
+<td class="medium">50</td>
+<td class="left-align">Case is 103 days old, status is Initial contact pending, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=f2a3dd10-3dc1-f011-bbd3-7c1e52189f64">2511140030005639</a></td>
+<td>Waiting for product team</td>
+<td>86</td>
+<td>hideyukiwada</td>
+<td>kundolee</td>
+<td class="medium">48</td>
+<td class="left-align">Case is 85 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/715869547/home" class="">715869547</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/717527954/home" class="">717527954</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=245f8a89-6eda-f011-8544-7ced8d1c7ceb">2512160030006597</a></td>
+<td>Waiting for product team</td>
+<td>54</td>
+<td>hideyukiwada</td>
+<td>kundolee</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 53 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/727018861/home" class="">727018861</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=38ad1f08-cede-f011-8544-000d3a5727db">2512220030000152</a></td>
+<td>Waiting for product team</td>
+<td>48</td>
+<td>hideyukiwada</td>
+<td>kundolee</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 48 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000876868/home" class="">21000000876868</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=12823dac-72e1-f011-8544-7c1e5219fe01">2512250030002737</a></td>
+<td>Waiting for customer confirmation</td>
+<td>45</td>
+<td>sninomiya</td>
+<td>kundolee</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 44 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/731032830/home" class="">731032830</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=4c5bfad0-0fe2-f011-8544-002248258833">2512260030001073</a></td>
+<td>Waiting for customer confirmation</td>
+<td>44</td>
+<td>kentarookada</td>
+<td>kundolee</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 44 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/731437222/home" class="">731437222</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=721776d3-9deb-f011-8544-7ced8d1c7716">2601070030004429</a></td>
+<td>Waiting for product team</td>
+<td>32</td>
+<td>yuichimiyata</td>
+<td>kundolee</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 31 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000864264/home" class="">51000000864264</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=16f0b771-7dd6-f011-8544-002248258a2d">2512110030006429</a></td>
+<td>Pending customer response</td>
+<td>59</td>
+<td>kentarookada</td>
+<td>kundolee</td>
+<td class="low">36</td>
+<td class="left-align">Case is 58 days old, status is Pending customer response, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=320fcca9-18d7-f011-8543-7c1e52189f64">2512120030002533</a></td>
+<td>Waiting for product team</td>
+<td>58</td>
+<td>kakojima</td>
+<td>kundolee</td>
+<td class="low">31</td>
+<td class="left-align">Case is 57 days old, status is Waiting for product team, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>NAB (IC) - 5 Case(s) - Max Risk: 76</h2>
+<p><strong>PHE:</strong> KAPIL Chopra | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=6bb819f5-b1d4-f011-8544-000d3a572225">2512090030001942</a></td>
+<td>Pending customer response</td>
+<td>61</td>
+<td>shuaixiao</td>
+<td>nlymbers</td>
+<td class="high">76</td>
+<td class="left-align">Case is 61 days old, status is Pending customer response, ICM present: Yes. High ownership (10) and transfer (9) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/743458352/home" class="">743458352</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000862320/home" class="">51000000862320</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=98dadbe4-9684-f011-b4cb-7ced8d1f83a8">2508290060002788</a></td>
+<td>Pending customer response</td>
+<td>163</td>
+<td>prbhattarai</td>
+<td>nlymbers</td>
+<td class="high">67</td>
+<td class="left-align">Case is 162 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000877183/home" class="">51000000877183</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/698959989/home" class="">698959989</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=92d4404b-00a4-f011-bbd2-7c1e521895f7">2510080030002334</a></td>
+<td>Waiting for product team</td>
+<td>123</td>
+<td>prbhattarai</td>
+<td>nlymbers</td>
+<td class="high">64</td>
+<td class="left-align">Case is 122 days old, status is Waiting for product team, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=6c675ad2-0cf1-f011-8407-000d3a572225">2601140050000100</a></td>
+<td>Pending customer response</td>
+<td>25</td>
+<td>bhavanirao</td>
+<td>nlymbers</td>
+<td class="low">27</td>
+<td class="left-align">Case is 24 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000878209/home" class="">21000000878209</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000887600/home" class="">51000000887600</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=15ddd9ab-e6f4-f011-8406-6045bdd83c27">2601190030001567</a></td>
+<td>Troubleshooting</td>
+<td>20</td>
+<td>nancylu</td>
+<td>nlymbers</td>
+<td class="low">17</td>
+<td class="left-align">Case is 20 days old, status is Troubleshooting, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Novartis (IC) - 9 Case(s) - Max Risk: 76</h2>
+<p><strong>PHE:</strong> Ramana Krishnamoorthy | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=f03155e6-3a92-f011-b4cc-6045bd997800">2509151420002483</a></td>
+<td>Waiting for product team</td>
+<td>146</td>
+<td>abanat</td>
+<td>kpiorkowski</td>
+<td class="high">76</td>
+<td class="left-align">Case is 145 days old, status is Waiting for product team, ICM present: Yes. High ownership (6) and transfer (5) counts increase risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/709609541/home" class="">709609541</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/717248807/home" class="">717248807</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/727947522/home" class="">727947522</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/721306652/home" class="">721306652</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=ccf06bda-ca9d-f011-b41c-6045bdf65389">2509301420000281</a></td>
+<td>Mitigated</td>
+<td>131</td>
+<td>andrcosta</td>
+<td>ygtavare</td>
+<td class="high">66</td>
+<td class="left-align">Case is 130 days old, status is Mitigated, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/694641794/home" class="">694641794</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/710524321/home" class="">710524321</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=1d03a887-cc97-f011-b4cc-6045bd997800">2509221410000484</a></td>
+<td>Pending customer response</td>
+<td>139</td>
+<td>mabadesc</td>
+<td>raesteph</td>
+<td class="high">62</td>
+<td class="left-align">Case is 138 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/705189268/home" class="">705189268</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/712466636/home" class="">712466636</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000856644/home" class="">21000000856644</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=938f774e-e2ba-f011-bbd3-7ced8d5d3561">2511061420000171</a></td>
+<td>Pending customer response</td>
+<td>94</td>
+<td>mbadawi</td>
+<td>kpiorkowski</td>
+<td class="medium">55</td>
+<td class="left-align">Case is 93 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/723058663/home" class="">723058663</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000873960/home" class="">21000000873960</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/730114940/home" class="">730114940</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=5f6ed0a0-84cb-f011-bbd3-7ced8d8e5581">2511271420001502</a></td>
+<td>Troubleshooting</td>
+<td>73</td>
+<td>mbadawi</td>
+<td>kpiorkowski</td>
+<td class="medium">52</td>
+<td class="left-align">Case is 72 days old, status is Troubleshooting, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/718445455/home" class="">718445455</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=19fad7a3-3ed7-f011-8544-7c1e52510b00">2512121420000811</a></td>
+<td>Pending customer response</td>
+<td>58</td>
+<td>drpopa</td>
+<td>ansandu</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 57 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000872879/home" class="">21000000872879</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=12b15582-c8eb-f011-8544-7c1e52510b00">2601071420002006</a></td>
+<td>Pending customer response</td>
+<td>32</td>
+<td>inbals</td>
+<td>ansandu</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 31 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/731474122/home" class="">731474122</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=bcdd3575-76ec-f011-8544-7c1e52510c71">2601081420000883</a></td>
+<td>Waiting for product team</td>
+<td>31</td>
+<td>haghai</td>
+<td>raesteph</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 30 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000876055/home" class="">21000000876055</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=9ab86b36-fad0-f011-bbd3-7c1e52510a2a">2512041420001091</a></td>
+<td>Mitigated</td>
+<td>66</td>
+<td>navadlamudi</td>
+<td>manishka</td>
+<td class="low">38</td>
+<td class="left-align">Case is 65 days old, status is Mitigated, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Autodesk (IC) - 2 Case(s) - Max Risk: 71</h2>
+<p><strong>PHE:</strong> Tim Griffin | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=7326963e-6881-f011-b4cc-000d3a1840bb">2508250060002344</a></td>
+<td>Pending customer response</td>
+<td>167</td>
+<td>v-vsur</td>
+<td>v-thahame</td>
+<td class="high">71</td>
+<td class="left-align">Case is 167 days old, status is Pending customer response, ICM present: Yes. Ownership (5) and transfer (4) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/692107101/home" class="">692107101</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=491a5651-f9d0-f011-bbd3-7c1e52024128">2512040030006286</a></td>
+<td>Pending customer response</td>
+<td>66</td>
+<td>v-bathiniha</td>
+<td>v-thahame</td>
+<td class="low">38</td>
+<td class="left-align">Case is 65 days old, status is Pending customer response, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>AGL Energy (IC) - 7 Case(s) - Max Risk: 64</h2>
+<p><strong>PHE:</strong> Maathangi Kannan Vaidehi | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=afacb11d-1db5-f011-bbd2-7c1e521893eb">2510290030008804</a></td>
+<td>Pending customer response</td>
+<td>101</td>
+<td>nancylu</td>
+<td>nlymbers</td>
+<td class="high">64</td>
+<td class="left-align">Case is 101 days old, status is Pending customer response, ICM present: Yes. Ownership (4) and transfer (3) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/720584437/home" class="">720584437</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/720295895/home" class="">720295895</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=1eb68356-0fb5-f011-bbd3-00224826b738">2510290030008596</a></td>
+<td>Pending customer response</td>
+<td>101</td>
+<td>prbhattarai</td>
+<td>nlymbers</td>
+<td class="high">60</td>
+<td class="left-align">Case is 101 days old, status is Pending customer response, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/712728428/home" class="">712728428</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=85d6bbed-289f-f011-b41b-002248298388">2510020030000255</a></td>
+<td>Troubleshooting</td>
+<td>129</td>
+<td>v-yadavrajku</td>
+<td>v-jikaushik</td>
+<td class="medium">59</td>
+<td class="left-align">Case is 129 days old, status is Troubleshooting, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/730876102/home" class="">730876102</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/715492890/home" class="">715492890</a><br><a href="https://portal.microsofticm.com/imp/v5/incidents/details/722748292/home" class="">722748292</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=99c50f97-0b95-f011-b4cb-7c1e52fd2660">2509190030001900</a></td>
+<td>Mitigated</td>
+<td>142</td>
+<td>v-zebaf</td>
+<td>v-meti</td>
+<td class="medium">52</td>
+<td class="left-align">Case is 142 days old, status is Mitigated, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=a055c1a2-56d9-f011-8544-7c1e52189a65">2512150030000676</a></td>
+<td>Waiting for customer confirmation</td>
+<td>55</td>
+<td>veraviriya</td>
+<td>nlymbers</td>
+<td class="medium">46</td>
+<td class="left-align">Case is 55 days old, status is Waiting for customer confirmation, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000875881/home" class="">51000000875881</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=8d36c8c7-04da-f011-8544-000d3a5726b8">2512150030008448</a></td>
+<td>Waiting for customer confirmation</td>
+<td>54</td>
+<td>veraviriya</td>
+<td>nlymbers</td>
+<td class="medium">46</td>
+<td class="left-align">Case is 54 days old, status is Waiting for customer confirmation, ICM present: Yes. Ownership (3) and transfer (2) counts add to risk.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000868738/home" class="">21000000868738</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=ab71316c-62ca-f011-bbd3-7c1e520d3095">2511260030000335</a></td>
+<td>Pending customer response</td>
+<td>74</td>
+<td>v-ajaytarade</td>
+<td>v-jikaushik</td>
+<td class="low">38</td>
+<td class="left-align">Case is 74 days old, status is Pending customer response, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Zurich (IC) - 4 Case(s) - Max Risk: 62</h2>
+<p><strong>PHE:</strong> Pavel Garmashov | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=8fd37ba7-ab9d-f011-b41b-000d3a8a651d">2509300030001705</a></td>
+<td>Waiting for product team</td>
+<td>131</td>
+<td>madhurisingh</td>
+<td>robrahma</td>
+<td class="high">62</td>
+<td class="left-align">Case is 131 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/704412583/home" class="">704412583</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=62c6dd2d-76ad-f011-bbd3-000d3a572225">2510200030002667</a></td>
+<td>Pending customer response</td>
+<td>111</td>
+<td>sialin</td>
+<td>meilanyeh</td>
+<td class="medium">52</td>
+<td class="left-align">Case is 110 days old, status is Pending customer response, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=fd138aad-1dc1-f011-bbd3-7c1e52024390">2511140030003062</a></td>
+<td>Troubleshooting</td>
+<td>86</td>
+<td>v-pprashunt</td>
+<td>v-meti</td>
+<td class="medium">49</td>
+<td class="left-align">Case is 85 days old, status is Troubleshooting, ICM present: No. Ownership (4) and transfer (3) counts add to risk.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://onesupport.crm.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=14809a40-d4f4-f011-8406-7c1e5214d86e">2601190030000426</a></td>
+<td>Mitigated</td>
+<td>20</td>
+<td>sophiawu</td>
+<td>meilanyeh</td>
+<td class="low">27</td>
+<td class="left-align">Case is 20 days old, status is Mitigated, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/51000000865705/home" class="">51000000865705</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Santander (IC) - 4 Case(s) - Max Risk: 62</h2>
+<p><strong>PHE:</strong> Pavel Garmashov | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=05ecc881-9593-f011-b4cb-6045bd8c7b52">2509171420000338</a></td>
+<td>Waiting for product team</td>
+<td>144</td>
+<td>mariopereira</td>
+<td>ygtavare</td>
+<td class="high">62</td>
+<td class="left-align">Case is 143 days old, status is Waiting for product team, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/687188371/home" class="">687188371</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=fc79ec9e-dcd1-f011-bbd3-7ced8d5d3561">2512051420001985</a></td>
+<td>Mitigated</td>
+<td>65</td>
+<td>aalbataineh</td>
+<td>boussom</td>
+<td class="medium">45</td>
+<td class="left-align">Case is 64 days old, status is Mitigated, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000860434/home" class="">21000000860434</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=adf4fcd9-bde0-f011-8544-7c1e52510a2a">2512241420000493</a></td>
+<td>Waiting for customer confirmation</td>
+<td>46</td>
+<td>aalbataineh</td>
+<td>boussom</td>
+<td class="medium">41</td>
+<td class="left-align">Case is 45 days old, status is Waiting for customer confirmation, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000862533/home" class="">21000000862533</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=83b4e055-79c5-f011-bbd3-7c1e52510b00">2511191410000351</a></td>
+<td>Troubleshooting</td>
+<td>80</td>
+<td>haghai</td>
+<td>raesteph</td>
+<td class="low">38</td>
+<td class="left-align">Case is 80 days old, status is Troubleshooting, ICM present: No. No major additional risk factors.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>WSP (IC) - 1 Case(s) - Max Risk: 31</h2>
+<p><strong>PHE:</strong> Amulya Eedara | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=387df220-e7ef-f011-8407-7c1e52510a2a">2601121410000529</a></td>
+<td>Identifying the issue</td>
+<td>26</td>
+<td>jerrysa</td>
+<td>juliedunn</td>
+<td class="low">31</td>
+<td class="left-align">Case is 26 days old, status is Identifying the issue, ICM present: No. High ownership (6) and transfer (5) counts increase risk.</td>
+<td>None</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Nestle (IC) - 1 Case(s) - Max Risk: 27</h2>
+<p><strong>PHE:</strong> Josef Ibarra | <strong>CLE:</strong> N/A</p>
+
+<table class="case-table">
+<thead>
+<tr>
+<td>Case ID</td>
+<td>Status</td>
+<td>Age (Days)</td>
+<td>Owner</td>
+<td>Manager</td>
+<td>Risk</td>
+<td>Summary</td>
+<td>ICM IDs</td>
+<td>ICM Owner</td>
+<td>ICM Status</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="nowrap"><a href="https://eudfm.crm4.dynamics.com/main.aspx?appid=101acb62-8d00-eb11-a813-000d3a8b3117&pagetype=entityrecord&etn=incident&id=8fc65b26-32f2-f011-8407-7ced8d8e5581">2601151420002814</a></td>
+<td>Pending customer response</td>
+<td>23</td>
+<td>vialbert</td>
+<td>ansandu</td>
+<td class="low">27</td>
+<td class="left-align">Case is 23 days old, status is Pending customer response, ICM present: Yes. No major additional risk factors.</td>
+<td><a href="https://portal.microsofticm.com/imp/v5/incidents/details/21000000863466/home" class="">21000000863466</a></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</tbody>
+</table>
+
+</body>
+</html>

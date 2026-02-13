@@ -1,0 +1,41 @@
+// ========================================
+// DLP WEB TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\DLPWeb
+// Focus: SharePoint/OneDrive/Exchange Online DLP
+// Common Issues: Policy tips, false positives, scope configurations
+// ========================================
+
+let TeamName = "PURVIEW\\DLPWeb";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR DLP WEB:
+// 1. Policy Tips (display timing, messaging clarity, user overrides)
+// 2. False Positives (SIT accuracy, custom patterns, RegEx issues)
+// 3. Exchange DLP (email scanning, transport rules, journaling)
+// 4. SharePoint/OneDrive (library scope, guest sharing, sync client)
+// 5. Teams DLP (chat vs. files, private channels, external users)
+// 6. Sensitive Info Types (SIT library, custom SITs, confidence levels)
+// 7. Policy Evaluation (rule processing, exceptions, priority)
+// 8. Incident Management (alert routing, remediation, user notifications)

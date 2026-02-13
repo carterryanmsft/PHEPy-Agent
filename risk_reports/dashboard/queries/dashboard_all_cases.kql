@@ -1,0 +1,53 @@
+// All Cases Table with Risk Calculation
+let ICTenants = datatable(TopParentName:string, TPID:int, TenantId:string, CLE:string, PHE:string, Program:string)
+[
+    "Ford", 639534, "c990bb7a-51f4-439b-bd36-9c07fb1041c0", "", "Ron Mustard", "IC",
+    "Sainsbury's", 7056084, "e11fd634-26b5-47f4-8b8c-908e466e9bdf", "", "Sonal Sagar", "IC",
+    "Autodesk", 625338, "67bff79e-7f91-4433-a8e5-c9252d2ddc1d", "", "Tim Griffin", "IC",
+    "Vodafone", 520413, "68283f3b-8487-4c86-adb3-a5228f18b893", "", "Josef Ibarra", "IC",
+    "State of WA", 641135, "11d0e217-264e-400a-8ba0-57dcc127d72d", "", "Kanika Kapoor", "IC",
+    "State of WA", 641135, "9ef85bca-98dd-4e6e-b55c-f296e678e989", "", "Kanika Kapoor", "IC",
+    "BHP", 523272, "4f6e1565-c2c7-43cb-8a4c-0981d022ce20", "", "Manaswi Upadhyaya K", "IC",
+    "AGL Energy", 1170498, "123913b9-915d-4d67-aaf9-ce327e8fc59f", "", "Maathangi Kannan Vaidehi", "IC",
+    "WSP", 2831650, "3d234255-e20f-4205-88a5-9658a402999b", "", "Amulya Eedara", "IC",
+    "Huntington", 645695, "157a26ef-912f-4244-abef-b45fc4bd77f9", "", "Hemanth Varyani", "IC",
+    "Nestle", 604010, "12a3af23-a769-4654-847f-958f3d479f4a", "", "Josef Ibarra", "IC",
+    "Santander", 1278397, "35595a02-4d6d-44ac-99e1-f9ab4cd872db", "", "Pavel Garmashov", "IC",
+    "Zurich", 2656229, "95d1d810-50cf-4169-8565-6bfba279a0cd", "", "Pavel Garmashov", "IC",
+    "Novartis", 1528952, "f35a6974-607f-47d4-82d7-ff31d7dc53a5", "", "Ramana Krishnamoorthy", "IC",
+    "NAB", 1104955, "48d6943f-580e-40b1-a0e1-c07fa3707873", "", "KAPIL Chopra", "IC",
+    "MUFJ", 5025483, "3a498a73-f68c-4993-9940-40f5dc4b029b", "", "Salonie Vyas", "IC",
+    "MUFJ", 5025483, "952d7d55-02c8-4421-ae6d-aa79da2f5152", "", "Salonie Vyas", "IC"
+];
+GetSCIMIncidentV2
+| where ServiceRequestState != "Closed"
+| where ProductName == "Microsoft Purview Compliance"
+| join kind=inner ICTenants on TenantId
+| extend DaysOpen = todouble(CaseAge)
+| where DaysOpen >= toint({MinAge})
+| extend AgeScore = case(
+    DaysOpen > 180, 56,
+    DaysOpen > 120, 49,
+    DaysOpen > 90, 42,
+    DaysOpen > 60, 35,
+    DaysOpen > 30, 28,
+    DaysOpen >= 20, 14,
+    0)
+| extend OwnershipScore = min(OwnershipCount * 2, 20)
+| extend TransferScore = min(TransferCount * 3, 15)
+| extend IdleScore = min(datetime_diff('day', now(), ModifiedDate) / 7 * 3, 15)
+| extend ReopenScore = min(ReopenCount * 5, 10)
+| extend ICMScore = iff(isnotempty(RelatedICM_Id), 10, 0)
+| extend SevScore = case(ServiceRequestCurrentSeverity == "A", 5, ServiceRequestCurrentSeverity == "B", 3, 0)
+| extend CritSitBonus = iff(IsCritSit == true, 10, 0)
+| extend RiskScore = AgeScore + OwnershipScore + TransferScore + IdleScore + ReopenScore + ICMScore + SevScore + CritSitBonus
+| extend RiskLevel = case(
+    DaysOpen > 90, "Critical",
+    RiskScore >= 60, "High",
+    RiskScore >= 40, "Medium",
+    "Low")
+| extend HasICM = iff(isnotempty(RelatedICM_Id), "Yes", "No")
+| extend CaseId = extract(@"id=([a-f0-9\-]+)", 1, CaseUri)
+| project ServiceRequestNumber, TopParentName, RiskLevel, RiskScore, DaysOpen,
+          AgentAlias, ServiceRequestStatus, HasICM, PHE, CLE, CaseId
+| order by RiskScore desc, DaysOpen desc

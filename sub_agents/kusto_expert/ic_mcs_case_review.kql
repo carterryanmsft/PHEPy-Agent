@@ -1,0 +1,48 @@
+// Query: IC and MCS Case Review for Purview
+// Purpose: Detailed review of active Purview support cases for Intensive Care and MCS customers
+// Cluster: cxedataplatformcluster.westus2.kusto.windows.net
+// Database: cxedata
+// Table: GetSCIMIncidentV2
+// Date: February 4, 2026
+// Updated: Corrected column names, added support for >30 days filter
+
+cluster('cxedataplatformcluster.westus2.kusto.windows.net').database('cxedata').GetSCIMIncidentV2
+| where ServiceRequestState != "Closed"  // Active cases only
+| where ProductName contains "Purview" or SAPPath contains "Purview"
+| where PlanningCategory startswith "SCIM" or SubPlanningCategory startswith "SCIM"  // Purview SCIM cases
+// Filter for premium support (IC/MCS typically have Premium or Unified support)
+| where ServiceOfferingLevel2 in ("Premium", "Unified", "Unified Support") or IsS500Program == true
+| extend DaysOpen = todouble(CaseAge)
+| where DaysOpen > 30  // Only cases open more than 30 days
+| extend AgeCategory = case(
+    DaysOpen > 60, "Critical (>60 days)",
+    DaysOpen > 30, "High (30-60 days)",
+    "Normal (<30 days)")
+| extend Program = case(
+    ServiceOfferingLevel2 == "Premium", "MCS/Premium",
+    ServiceOfferingLevel2 == "Unified", "MCS/Unified", 
+    IsS500Program == true, "S500",
+    "Other")
+| project 
+    ServiceRequestNumber,
+    TpAccountName,
+    Program,
+    ServiceOfferingLevel2,
+    ServiceRequestCurrentSeverity,
+    ServiceRequestState,
+    ServiceRequestStatus,
+    Title,
+    CreatedTime,
+    DaysOpen,
+    AgeCategory,
+    AgentAlias,
+    ModifiedDate,
+    TenantId,
+    TenantTpid,
+    ProductName,
+    PlanningCategory,
+    QueueName,
+    IsCritSit,
+    RelatedICM_Id,
+    CaseUri
+| order by DaysOpen desc

@@ -1,0 +1,129 @@
+# ========================================
+# PHEPy Workspace - Git Ignore Rules
+# ========================================
+# Protects sensitive customer data, credentials, and artifacts
+
+# ----------------------------------------
+# Python Artifacts
+# ----------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Distribution / Packaging
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# ----------------------------------------
+# Sensitive Data Files (CRITICAL)
+# ----------------------------------------
+# Customer data CSVs contain TenantIds, TPIDs, contact info
+*.csv
+!**/templates/**/*.csv
+!**/documentation/**/*.csv
+
+# Kusto query results and case data
+*.json
+!mcp.json
+!package.json
+!**/templates/**/*.json
+
+# ----------------------------------------
+# Generated Reports (Outputs)
+# ----------------------------------------
+*.htm
+*.html
+!**/templates/**/*.htm
+!**/templates/**/*.html
+
+# ----------------------------------------
+# IDE and Editor Files
+# ----------------------------------------
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+.idea/
+
+# ----------------------------------------
+# Operating System Files
+# ----------------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.lnk
+
+# ----------------------------------------
+# Logs and Temporary Files
+# ----------------------------------------
+*.log
+*.tmp
+*.temp
+*_temp.*
+*_sample.*
+*_test.*
+
+# ----------------------------------------
+# Credentials and Secrets
+# ----------------------------------------
+.env
+.env.local
+*secrets*
+*credentials*
+*.key
+*.pem
+
+# ----------------------------------------
+# OneNote and Office Temp Files
+# ----------------------------------------
+~$*
+*.tmp
+
+# ----------------------------------------
+# Archive and Backup Files
+# ----------------------------------------
+*.bak
+*.backup
+*_backup.*
+*.old
+
+# ----------------------------------------
+# Compiled Python Extensions
+# ----------------------------------------
+*.dll
+*.dylib
+*.pyd
+
+# ----------------------------------------
+# Jupyter Notebooks (if any)
+# ----------------------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ----------------------------------------
+# Test Coverage
+# ----------------------------------------
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+.tox/
+
+# ----------------------------------------
+# Documentation Build
+# ----------------------------------------
+_build/
+site/

@@ -1,0 +1,41 @@
+// ========================================
+// DLP ENDPOINT TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\DLPEndpoint
+// Focus: Windows/Mac endpoint DLP, device policies, file actions
+// Common Issues: Policy conflicts, printer restrictions, USB blocking
+// ========================================
+
+let TeamName = "PURVIEW\\DLPEndpoint";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR DLP ENDPOINT:
+// 1. Policy Evaluation (rule conflicts, precedence, overrides)
+// 2. Printer Restrictions (print to PDF, physical printers, network printers)
+// 3. USB/Removable Media (blocking, read-only, approved devices)
+// 4. Browser Support (Chrome, Edge, Firefox - extension issues)
+// 5. Mac Endpoint (parity with Windows, Apple Silicon compatibility)
+// 6. Performance Impact (CPU usage, scan delays, false positives)
+// 7. Audit/Reporting (activity logs, compliance reports, alerting)
+// 8. App Allowlists (trusted apps, CloudAppMode, unallowed app blocking)

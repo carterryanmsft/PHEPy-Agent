@@ -1,0 +1,19 @@
+
+Value Stream Kaizen is a structured, time‑bound improvement workshop (2–4 days) designed to analyze a full process, identify inefficiencies, and rapidly implement improvements. It brings cross‑functional teams together to deeply understand current workflows and redesign them for better performance.
+
+Purpose:
+- Deepen understanding of the current state.
+- Accelerate improvement outcomes and empower teams.
+- Optimize entire processes with multiple departments or waste.
+
+Participants:
+- CI Facilitator
+- Sponsor/Leader
+- Process Owners
+- Process Executors
+
+Four Steps:
+1. Understand Current State — map the workflow.
+2. Identify Pain Points — surface waste and non‑value‑add steps.
+3. Identify Solutions — brainstorm and prioritize improvements.
+4. Create Execution Plan — define owners, timelines, and KPI sustainment.

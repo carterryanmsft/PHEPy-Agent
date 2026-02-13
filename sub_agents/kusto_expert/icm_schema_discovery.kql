@@ -1,0 +1,23 @@
+// Query: ICM Data Warehouse Schema Discovery
+// Purpose: Discover tables and schema in ICM data warehouse
+// Cluster: icmcluster.kusto.windows.net
+// Database: icmdatawarehouse
+// Date: February 4, 2026
+
+// Note: This query needs a table name. Common ICM table names to try:
+// - Incidents
+// - ICMIncidents  
+// - IncidentSnapshot
+// - IncidentHistory
+
+// Example - List all tables in database:
+.show database icmdatawarehouse schema
+
+// Example - Get schema of Incidents table:
+cluster('icmcluster.kusto.windows.net').database('icmdatawarehouse').Incidents
+| take 1
+| getschema
+
+// Alternative - Sample data from table:
+cluster('icmcluster.kusto.windows.net').database('icmdatawarehouse').Incidents
+| take 1

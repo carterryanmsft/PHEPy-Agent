@@ -1,0 +1,43 @@
+// Query: ICM Incidents for Purview - IC and MCS Customers
+// Purpose: Retrieve active ICM incidents related to Purview for IC/MCS customers
+// Cluster: icmcluster.kusto.windows.net
+// Database: icmdatawarehouse
+// Table: Incidents
+// Date: February 4, 2026
+// Updated: Corrected schema based on actual ICM table
+
+cluster('icmcluster.kusto.windows.net').database('icmdatawarehouse').Incidents
+| where Status in ("Active", "Mitigating", "Investigating", "Assigned")
+| where OwningTenantName contains "Purview" or Component contains "Purview" or Title contains "Purview"
+| where IsCustomerImpacting == true  // Only customer-impacting incidents
+| extend DaysOpen = datetime_diff('day', now(), CreateDate)
+| extend AgeCategory = case(
+    DaysOpen > 60, "Critical (>60 days)",
+    DaysOpen > 30, "High (30-60 days)",
+    DaysOpen > 14, "Medium (14-30 days)",
+    "Normal (<14 days)")
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    Status,
+    CreateDate,
+    DaysOpen,
+    AgeCategory,
+    OwningTenantName,
+    OwningTeamName,
+    OwningContactAlias,
+    Component,
+    CustomerName,
+    IsCustomerImpacting,
+    IsOutage,
+    MitigateDate,
+    ResolveDate,
+    SupportTicketId,
+    ModifiedDate,
+    ImpactStartDate,
+    Tags
+| order by Severity asc, DaysOpen desc
+
+// Query for cases > 30 days only
+// | where DaysOpen > 30

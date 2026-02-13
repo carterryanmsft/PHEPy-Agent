@@ -1,0 +1,25 @@
+$schema: https://azuremlschemas.azureedge.net/latest/online-deployment.schema.json
+name: phepy-orchestrator-deployment
+description: PHEPy Orchestrator Agent deployment
+model:
+  name: gpt-4o
+  version: latest
+environment_variables:
+  AZURE_OPENAI_DEPLOYMENT: gpt-4o
+  SYSTEM_MESSAGE_FILE: system-instructions.txt
+instance_type: Standard_DS3_v2
+instance_count: 1
+request_settings:
+  request_timeout_ms: 90000
+  max_concurrent_requests_per_instance: 1
+  max_queue_wait_ms: 500
+liveness_probe:
+  failure_threshold: 30
+  success_threshold: 1
+  period: 10
+  initial_delay: 10
+readiness_probe:
+  failure_threshold: 30
+  success_threshold: 1
+  period: 10
+  initial_delay: 10

@@ -1,0 +1,62 @@
+// Weekly Low Quality Escalations Export - Enhanced with ICMTimeZone
+// Purpose: Export low quality escalations from last 7 days with full metadata
+// Last Updated: February 5, 2026
+
+let qualityData = IncidentCustomFieldEntriesDedupView
+| where Name == "Escalation Quality"
+| where isnotempty(Value) and Value != "All Data Provided"
+| project IncidentId, EscalationQuality = Value;
+let regionData = IncidentCustomFieldEntriesDedupView
+| where Name == "Region"
+| project IncidentId, ICMTimeZone = Value;
+let escalationType = IncidentCustomFieldEntriesDedupView
+| where Name == "Escalation Type"
+| project IncidentId, EscalationType = Value;
+let tsgLink = IncidentCustomFieldEntriesDedupView
+| where Name == "Link to TSG"
+| project IncidentId, TsgLink = Value;
+IncidentsDedupView
+| where OwningTenantName == "Purview"
+| where ResolveDate > ago(7d)
+| where IncidentType == "CustomerReported"
+| where IncidentId in ((qualityData | project IncidentId))
+| join kind=inner (qualityData) on IncidentId
+| join kind=leftouter (regionData) on IncidentId
+| join kind=leftouter (escalationType) on IncidentId
+| join kind=leftouter (tsgLink) on IncidentId
+| extend CreatorRegion = case(
+    isnotempty(ICMTimeZone) and ICMTimeZone in ("NAM", "nam"), "Americas",
+    isnotempty(ICMTimeZone) and ICMTimeZone in ("EUR", "eur", "GBR", "DEU"), "EMEA",
+    isnotempty(ICMTimeZone) and ICMTimeZone in ("APC", "JPN", "AUS", "IND"), "APAC",
+    SourceCreatedBy contains "wcl_hcm", "APAC-Vietnam",
+    SourceCreatedBy contains "cvg_pun", "APAC-India",
+    SourceCreatedBy contains "inf_hyd", "APAC-India",
+    "Unknown"
+)
+| extend ProductArea = case(
+    OwningTeamName contains "DLM", "DLM",
+    OwningTeamName contains "DLP" or OwningTeamName contains "MIP" 
+        or OwningTeamName contains "EDM" or OwningTeamName contains "Sensitivity", "MIP/DLP",
+    OwningTeamName contains "eDiscovery", "eDiscovery",
+    OwningTeamName contains "Audit", "Audit",
+    OwningTeamName contains "PRIVA", "PRIVA",
+    "Other"
+)
+| project 
+    IcMId = IncidentId,
+    IncidentId,
+    Title,
+    Severity,
+    CreatedBy = SourceCreatedBy,
+    CreatorRegion,
+    ICMTimeZone,
+    ProductArea,
+    OwningTeam = OwningTeamName,
+    CreateDate,
+    ResolveDate,
+    EscalationQuality,
+    EscalationType,
+    SupportTicketId,
+    CustomerName,
+    TsgLink
+| order by ProductArea asc, ResolveDate desc

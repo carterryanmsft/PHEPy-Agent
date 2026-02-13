@@ -1,0 +1,21 @@
+// Theme: [Issue] / Policy / Applying\n// Total Incidents: 9\n// Customers Affected: 9\n// Sample Incident IDs: 716118017, 682893373, 680212940, 687155369, 674304456, 725875718, 707648983, 676462707, 698329331\n\n
+let TargetIncidents = dynamic([716118017, 682893373, 680212940, 687155369, 674304456, 725875718, 707648983, 676462707, 698329331]);
+Incidents
+| where IncidentId in (TargetIncidents)
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    CustomerName,
+    CreateDate,
+    ResolveDate,
+    OwningTeamName,
+    HowFixed,
+    ImpactStartDate,
+    ImpactedUserCount = CustomerImpactedUserCount,
+    ImpactedServices = strcat_array(ImpactedServices, ", "),
+    Region = CustomerRegion
+| extend 
+    ResolutionTime_Hours = datetime_diff('hour', ResolveDate, CreateDate),
+    ImpactDuration_Hours = datetime_diff('hour', ResolveDate, ImpactStartDate)
+| order by CreateDate desc

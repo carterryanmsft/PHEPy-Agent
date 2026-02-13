@@ -1,0 +1,41 @@
+// ========================================
+// SENSITIVITY LABELS TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\SensitivityLabels
+// Focus: Label application, visibility, encryption, auto-labeling
+// Common Issues: Cross-app inconsistency, File Explorer gaps, DKE
+// ========================================
+
+let TeamName = "PURVIEW\\SensitivityLabels";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR SENSITIVITY LABELS:
+// 1. Cross-Application Inconsistency (Office apps, Teams, SharePoint, OWA)
+// 2. File Explorer Integration (column visibility, label display)
+// 3. Encryption & DKE (Double Key Encryption scenarios)
+// 4. Auto-Labeling (policy application, scope, timing)
+// 5. Label Downgrade/Removal (justification requirements, UX friction)
+// 6. Licensing (E3 vs E5 confusion, feature availability)
+// 7. Audit & Reporting (label change tracking, analytics gaps)
+// 8. PowerShell/API (bulk operations, automation limitations)

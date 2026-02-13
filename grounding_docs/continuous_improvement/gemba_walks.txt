@@ -1,0 +1,32 @@
+
+A Gemba Walk involves going to where work is done to observe processes and understand how value flows to the customer.
+
+Purpose:
+- Reveal true workflow conditions.
+- Identify improvement opportunities.
+- Align leaders.
+
+When to Use:
+- Process evaluation.
+- Problem investigation.
+- Pain‑point exploration.
+
+Participants:
+- Process Owner
+- Process Executors
+- Leaders/Observers
+
+Steps:
+1. Select a representative example.
+2. Walk backward from the customer outcome.
+3. Document data (PT, LT, inputs, outputs, defects).
+4. Identify improvements.
+
+Supporting Questions:
+Inputs, activities, outputs, customer engagement, reflections.
+
+Preparation:
+Review performance, customer feedback, automation opportunities, gaps.
+
+Wrap‑Up:
+Collect feedback, assess DIVE stage, use CI resources.

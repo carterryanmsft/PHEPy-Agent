@@ -1,0 +1,16 @@
+// ICM Incidents Query for IC/MCS Cases
+// Run this on icmcluster.kusto.windows.net/icmdatawarehouse
+// Export results and join with support case data in the report generator
+// Excludes internal SCIM Escalation Management Service incidents
+
+cluster('icmcluster.kusto.windows.net').database('icmdatawarehouse').Incidents
+| where IsActive == true
+| where OwningTeamName !startswith "SCIMESCALATIONMANAGEMENT\\"
+| project 
+    IncidentId,
+    IcmOwner=OwningContactAlias,
+    IcmSeverity=Severity,
+    IcmStatus=Status,
+    IcmTitle=Title,
+    IcmCreatedDate=CreateDate
+| order by IncidentId desc

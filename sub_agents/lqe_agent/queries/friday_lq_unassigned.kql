@@ -1,0 +1,73 @@
+// Friday Night Low Quality Escalation Analysis Query
+// Purpose: Find unassigned low quality escalations from the last 7 days
+// Organized by: Region and Feature Area
+// Last Updated: February 5, 2026
+
+let escalationInformation = IncidentsDedupView
+| where OwningTenantName == "Purview"
+| where ResolveDate > ago(7d)
+| where IncidentType == "CustomerReported"
+| extend FiscalWeek = 24 - toint((fw24EndDate - ResolveDate) / 7d)
+| project ResolveDate, FiscalWeek, IncidentId, SourceCreatedBy, OwningTeamName, 
+    Title, Severity, RoutingId, IcMId, CustomerSegment, SourceOrigin, ImpactStartDate;
+let qualityInformation =
+IncidentCustomFieldEntriesDedupView
+| where Name == "Escalation Quality"
+| project IncidentId, EscalationQuality = Value;
+let supportReviews = IncidentCustomFieldEntriesDedupView
+| where Name == "Escalation quality standards"
+| project IncidentId, QualityReviewFalsePositive = Value;
+let qualityReasons = IncidentCustomFieldEntriesDedupView
+| where Name == "Low Quality Reason"
+| project IncidentId, LowQualityReason = Value;
+let reviewerAssignment = IncidentCustomFieldEntriesDedupView
+| where Name == "Escalation Reviewer"
+| project IncidentId, ReviewerName = Value;
+let featureArea = IncidentCustomFieldEntriesDedupView
+| where Name == "Feature Area"
+| project IncidentId, FeatureArea = Value;
+escalationInformation
+| join kind=inner (qualityInformation) on IncidentId
+| join kind=leftouter (supportReviews) on IncidentId
+| join kind=leftouter (qualityReasons) on IncidentId
+| join kind=leftouter (reviewerAssignment) on IncidentId
+| join kind=leftouter (featureArea) on IncidentId
+| where EscalationQuality != "All Data Provided"
+| where QualityReviewFalsePositive != "Yes" or isempty(QualityReviewFalsePositive)
+| where isempty(ReviewerName) or ReviewerName == ""
+| extend OriginRegion = case(
+    SourceOrigin contains "EMEA" or SourceOrigin contains "Europe", "EMEA",
+    SourceOrigin contains "APAC" or SourceOrigin contains "Asia", "APAC",
+    SourceOrigin contains "LATAM" or SourceOrigin contains "Latin", "LATAM",
+    SourceOrigin contains "Americas" or SourceOrigin contains "US" or SourceOrigin contains "NA", "Americas",
+    "Unknown"
+)
+| extend FeatureAreaCategory = case(
+    FeatureArea contains "MIP" or FeatureArea contains "DLP" or FeatureArea contains "Information Protection", "MIP/DLP",
+    FeatureArea contains "DLM" or FeatureArea contains "Lifecycle" or FeatureArea contains "Retention", "DLM",
+    FeatureArea contains "eDiscovery" or FeatureArea contains "eDisc" or FeatureArea contains "Discovery", "eDiscovery",
+    FeatureArea contains "Compliance" or FeatureArea contains "Records", "Compliance",
+    isempty(FeatureArea), "Unknown",
+    "Other"
+)
+| extend IsTrueLowQuality = true
+| project 
+    IncidentId,
+    IcMId,
+    RoutingId,
+    Title,
+    Severity,
+    CreatedBy = SourceCreatedBy,
+    OwningTeam = OwningTeamName,
+    ResolveDate,
+    FiscalWeek,
+    EscalationQuality,
+    LowQualityReason,
+    QualityReviewFalsePositive,
+    CustomerSegment,
+    IsTrueLowQuality,
+    ReviewerName,
+    OriginRegion,
+    FeatureArea = FeatureAreaCategory,
+    SourceOrigin
+| order by OriginRegion asc, FeatureArea asc, ResolveDate desc

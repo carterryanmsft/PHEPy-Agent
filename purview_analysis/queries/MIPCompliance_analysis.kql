@@ -1,0 +1,41 @@
+// ========================================
+// MIP COMPLIANCE TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\MIPCompliance
+// Focus: Compliance reporting, audit logs, activity alerts
+// Common Issues: Audit delays, report generation, alert configuration
+// ========================================
+
+let TeamName = "PURVIEW\\MIPCompliance";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR MIP COMPLIANCE:
+// 1. Audit Logs (label change events, retention, search/export)
+// 2. Activity Alerts (custom alerts, thresholds, notification delays)
+// 3. Compliance Reports (label usage reports, DLP reports, retention)
+// 4. Data Classification (analytics, trending, coverage metrics)
+// 5. PowerShell Audit (Get-ActivityExplorerData cmdlets, pagination)
+// 6. API Access (Management Activity API, webhook subscriptions)
+// 7. Retention of Audit Data (90-day vs 1-year, E5 requirements)
+// 8. Cross-Workload Reporting (unified view, data aggregation)

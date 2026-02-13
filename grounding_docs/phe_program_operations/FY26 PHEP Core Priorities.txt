@@ -1,0 +1,207 @@
+ Product Engineer Manager | Core Priorities
+Core PriorityCritical Indicators of SuccessMeasure(s)Outcomes Examples1Mission Critical Support, Customer Management: Ensure the success of Mission Critical Customers through rapid engagement and resolution of escalated issues.
+
+1.1 Ensure all Service Level Objectives are met or exceeded
+ICMs for MCS customers from CSS or via Direct Connect are acknowledged and the team is engaged in alignment with defined Service Level Objectives
+1.2 Own end to end escalation experience
+Ensure your team timely resolution of MCS IcM escalations throughout the issue lifecycle, including coordination with feature teams while remaining engaged with customer.
+1.3 Accelerate Time to Value for MCS Customers   
+Engage across internal teams (CLEs, CSS, CAT, Eng, etc.) to deliver the highest quality and best outcomes for customers critical projects, deployments, and operational changes.
+1.4 Improve Customer Health / Continuous Improvement
+Leverage service telemetry, support insights, RCAs, and delivery insights to improve the health of MCS customers and reduce support demand. 
+Positive trending in these key metrics:
+• ICM TTA <=15 min for Severity 1, 2, 2.5
+• ICM TTA <= 24h for Severity 3,4
+• ICM TTM <= 1d for Severity 1, 2, 2.5
+• ICM TTM <=10d for Severity 3,4
+• DFM TiC <= 4h for Case Sev 1
+• DFM TiC <= 12h for Case Sev A
+• TTRCA <=10d for MCS Customers• Ensured all MCS key measures are met/exceeded
+2CRIs, Escalation Management: Own and drive the mitigations of  escalations. 
+
+2.1 Ensure all Service Level Objectives are met or exceeded
+Actively monitor queues and take ownership of ICMs to meet SLAs with CSS
+2.2 Consistent Improvement
+Leverage feedback and ensure that the program evolves to improve the customer value proposition. 
+2.3 Improve Efficiency
+Implement strategies to improve the efficiency and reduce COGs of our Mission Critical Services. This involves identifying and eliminating bottlenecks, automating repetitive tasks, and ensuring that resources are utilized effectively
+ •	The team meets/exceeds average Time to ACK<=15 mins for Sev- 0, 1, 2, 2.5 IcMs.
+•	The team meets/exceeds average Time to ACK<=24 hours for Sev-3,4 IcMs.
+•	The team meets goal of maintaining an average TTM <= 20 days.
+•	Successfully complete On-Call requirements.• 3Develop into Trusted Advisor and Enable AI Transformation by continuously growing your leader and technical skills while developing your career at Microsoft.
+3.1 Leadership Growth
+Grow your leadership skills and maintain your personal development plan 
+3.2 Embrace AI
+Prioritize skilling and embrace the use of AI in daily work to help drive CoPilot adoption.
+3.3 Understand the value of MS Security products
+Be able to articulate the value proposition and role Microsoft Security Products play in solving customer problems and supporting a secure environment.
+• Completion of all required training
+• Obtain certification/complete training in 1-2 Microsoft Security Products
+• Successfully demonstrate usage of AI to increase team efficiency• Able to engage customers in technology discussion
+• Obtainment of certifications
+• Sharing technology learnings and best practices.4Intensive CARE, Customer Management: Restore customer confidence with Microsoft Security products and service by monitoring and accelerating resolution for a set of complex issue(s) for a customer. 4.1 Accelerate Time to Value
+Enable team to effectively collaborate with key stakeholders including CSS, Engineering, CSAMs and customer by modeling engagements to accelerate resolution of support backlog focused on increasing customer adoption
+4.2 Improve Support Health for Intensive Care Customers
+Ensure the team has clear understanding of how to prioritize and engage to ensure timely resolution.
+4.3 Set clear expectations with stakeholders to facilitate customer onboarding and offboarding in the Intensive care program
+Support your team by helping clearly define and ensuring the team is tracking key outcomes for intensive care customers, ensuring engagement does not exceed engagement scope and there is a clear understanding between Intensive Care and MCS offering.Complete deliverables in alignment with CEM Intensive CARE program.• 5Manager Core Priority
+Microsoft managers are expected to deliver success through empowerment and accountability by modeling, coaching, and caring
+5.1 Model 
+Live our culture, embody our values, and practice our leadership principles.
+5.2 Coach
+Define team objectives and outcomes, enable success across boundaries, help the team adapt and learn.
+5.3 Care
+Attract and retain great people, know everyone’s capabilities and aspirations, invest in the growth of others.
+• Timely Completion of Connects
+• Timely Completion of all required learning and training courses
+• Establish and revisit Team Agreements with your team
+• Regular Career Check-Ins with direct reports
+• Ongoing 1:1 conversations with your direct reports
+• Formal and Informal feedback from your team
+• Employee Signals• Culture – Embodies growth mindset by encouraging team to solve challenges, takes personal accountability for setbacks, asks for feedback, and applies learnings
+• Objectives and Outcomes – Successfully translates organization priorities to clear outcomes for the team.
+• Invest in the growth of others– Leverages Career Check-Ins to understand strengths, development areas, and supports career growth of individuals6D&I Core Priority
+To realize our mission to empower every person and organization on the planet to achieve more, each and every one of us must help create a diverse and inclusive culture where everyone can bring their full and authentic self, in alignment with our values. 
+More Information: Managers@Microsoft - Diverse and Inclusive for managers
+Leverage the D&I Core Priority guidance for employees and One Microsoft D&I Plan 
+Identify a focus area and develop my Diversity and Inclusion core priority. Once I have identified at least one focus area, I will articulate the impact I hope to make and how it may correspond with the three circles of impact.
+6.1 Transform Our Culture
+Activate and infuse inclusion in the day-to-day employee experience.
+6.2 Empower Our People
+Support and accelerate a diverse and inclusive workforce.
+6.3 Advance Inclusive Hiring
+Invest in meaningful engagement with future talent.
+6.4 Delight Our Customers
+Facilitate inclusive practices and products with our partner and customer ecosystem.
+• Employee Signals
+• Observation
+• Feedback
+• Models inclusive capabilities and allyship skills, and further practices and develops skills by exploring the D&I Learning Pathways
+• Increased sense of team empowerment
+• Models Microsoft’s D&I culture and values with partners, customers, and suppliers; actively seeks opportunities for new perspectives
+• Leveraging existing Microsoft processes and best practices for inclusive hiring and maintaining a diverse team of thoughts and backgrounds7Security Core Priority
+As a company, security is our number one priority to help our customers, Microsoft, and the world to be a safer place. We all?have the responsibility to directly contribute to the security of Microsoft and our customers. We must all commit to prioritizing the design, build and delivery of technology, tools, data, and processes that meet the highest possible standard of security.
+More Information: CxE Secure Future Initiative (SFI)7.1 Applied Learning
+Completing and applying learnings from the required Security Foundations and Trust Code (Standards of Business Conduct) training.
+7.2 Embrace Security Mindset
+Prioritizing security in my own work and ensuring I have anticipated and implemented secure approaches to products, processes, and tools in alignment with our Secure Future Initiative.
+7.3 Report It Now
+Committing to leveraging MSProtect to learn more about how I can contribute to securing Microsoft, including reporting any digital or physical security incidents via Report It Now.
+7.4 Carry the SFI Message to our customers and Partners 
+I will leverage customer engagements such as Support Incidents, escalations and planning discussion and familiarize myself with the resources available to better understand how we can help customers and partners to leverage SFI learnings to secure their environments• Security Training Completed with due date
+• 100% SFI Compliance and set ETA as needed to resolve SFI-related action items
+• • Team has addressed all S360/SFI work items in a timely manner
+• No reoccurrence of S360/SFI violations
+• Demonstrated examples of mentoring the team and modeling behaviors that prioritize a security-first mindset.
+
+
+Product Engineer | Core Priorities
+Mission PillarCore PriorityCritical Indicators of SuccessMeasure(s)Outcomes ExamplesEscalation ManagementMission Critical Support: Ensure the success of Mission Critical Customers through rapid engagement and resolution of escalated issues.
+
+1.1 Ensure successful customer onboarding
+Participate in customer onboarding engagements to assess customer environment, gather knowledge, and recommend improvements that contribute to customer success 
+1.2 Prioritize and engage promptly on customer escalations and accelerate TTM
+Appropriately prioritize collaboration and incoming IcMs to resolve issues for MCS customers
+1.3 Partner with Customer Lead engineers (CLEs) in direct customer engagements 
+Leverage deep product knowledge and engagement with engineering teams to proactively address potential blockers, resolve incidents, and contribute to RCAs
+1.4 Ensure the highest quality delivery and best possible outcome for MCS customers.
+Anticipate and proactively address key concerns of customers ensuring highest quality of experience. • Contribute to the team goal of ICM TTA <=15 min for ICM Sev 1,2,2.5 for MCS customers
+• Contribute to the team goal ICM TTA <= 24h for ICM Sev 3,4 for MCS customers
+• Contribute to the team goal of Time in Critsit: 
+• DFM Sev 1 =< 4h
+• DFM Sev A =<12h
+• Contribute to the team goal of TTM for MCS customers:
+• ICM Sev 1 =< 1d
+• ICM Sev A =<10d
+* Customer Feedback identifying an elevated support experience with MCS which meets or exceeds expectations. 
+* Reduced TTM for MCS customers when compared to other support cases
+* Feedback from CLEs highlighting collaboration and contribution to prompt case resolution. 
+CRIs: Own and mitigate escalations
+
+2.1 Monitor the CEM product queue and own IcM requests pending assignment.
+Take ownership and drive resolution of incoming requests. 
+2.2 Continuously improving problem-solving ability
+Leverage experiences and training to increase ability for self and team to resolve issues.
+2.3 Engage the right resources from core feature engineering groups to facilitate faster mitigation
+When necessary, effectively partner with core feature engineering teams to resolve customer escalations.
+• Contribute to the team goal of maintaining the average Time to ACK<=15 mins for Sev-2/1/0 IcMs.
+• Contribute to the team goal of maintaining an average Time to ACK<=24 hours for Sev-3/4 IcMs.
+• Contribute to the engineering team TTM goal.
+• Successfully complete On-Call requirements.
+* Prompt engagement on ICMs is appropriate to the severity of the incident. 
+* The timely and appropriate engagement of the engineering team to help resolve the customer issue. Customer HealthIntensive Care, CSU on Fire, GetHelp Customer Management: Restore customer confidence with Microsoft Security products and service by monitoring and accelerating resolution for a set of complex issue(s) for a customer.
+
+4.1 Accelerate Time to Value for Intensive Care customers
+Collaborate with key stakeholders including CAT, CSU, Engineering teams and CSAM to facilitate the accelerated resolution of support backlog and priority incidents leading to increase customer usage and adoption.
+4.2 Improve Support Health 
+Proactively monitor and engage in support incidents to ensure timely resolution.
+
+4.3 Set clear expectations with stakeholders to facilitate customer onboarding and offboarding in the Intensive Care program
+Clearly define and track identified key outcomes for Intensive care engagement ensuring engagement does not exceed engagement scope. Complete deliverables in alignment with CEM Intensive CARE program.* Improve support quality measures for an engaged customer. 
+* Positive internal feedback from CSAMs and other internal stakeholders. 
+* Collaboration with CAT on customers with shared deployment goals.Product HealthEnablement: Contribute to the improvement in quality of support ecosystem and product experience
+
+3.1 Regular participation in CRI triage calls.
+Be active contributor to CRI triages ensuring CRIs are prioritized, sharing experience and sharing key insights
+3.2 Collaborate with CLEs and CSS engineers to enhance their understanding of product and troubleshooting capabilities respectively
+Leverage customer engagements, triages, TSG, etc. to continuously improve customer experience and enable others to be successful.
+3.3 Facilitate RCA, PIR, and identify areas of improvement in product and process
+Own or contribute to processes resulting in improvements across technology, people, and processes 
+3.4 Collaborate with PM and feature teams to provide feedback on new features.
+Partner with teams to identify and share customer and support insights that resulting in continuous improvement to ecosystem.
+3.5 Participate in enhancing and refreshing internal troubleshooting guides by documenting the latest issues for CSS reference
+Identify opportunities to improve TSGs or customer documentation based upon escalation patterns, new features, or customer insights that leads to reduced incidents and escalations. * Reduce escalation rate in collaboration with PM peers.
+* Collaborate with PM and feature teams to document identified bugs.
+* Improve process reliability and product experience.
+* Contribution to tooling efforts to help diagnose customer issues. 
+* Published internal and external documents aimed deflection or troubleshooting.
+* Conduct internal training to improve knowledge. 
+* Raise engineering work items for improvement, provide suitable justification and promote with engineering / PM. 
+Engineer HealthDevelop into Trusted Advisor and Enable AI Transformation by continuously growing your leader and technical skills while developing your career at Microsoft.
+5.1 Develop and sustain comprehensive expertise in a specialized area(s) while also acquiring a broad understanding of features across my technology domain.
+5.2 Continuously develop and apply robust analytical and problem-solving skills to effectively address complex engineering challenges.
+5.3 Embrace AI
+Prioritize skilling and embrace the use of AI in daily work to help drive CoPilot adoption.
+
+* Leverage the learning days and complete all required training.
+* Demonstrate quick adaptation to new features, and process changes.* Complete and/or owns technology development tracks for CSS, CAT, or Field
+* Recognized across the team as the “go to” person for area(s) of specialized knowledge and able to resolve higher % of issues without engineering engagement
+* Engineering team often seeks assistance with complex issues
+* Called upon to represent technology area(s) as presenter at conferences
+* Participates in events to grow and demonstrate technical excellence (e.g. Hackathon, training, conferences)Security Core Priority 
+
+6.1 Embrace and grow your security mindset 
+by maintaining 100% compliance with Microsoft’s SFI requirements for internal security and prioritizing required training.
+6.2 Carry the SFI Message to our customers and partners 
+By staying up-to-date on SFI, increasing customer confidence on Microsoft’s commitment of SED, and leveraging SFI to help customers become more secure. 
+6.3 Identify and prioritize SFI Product Improvement 
+by driving the business and to preventing PG distraction, providing feedback on features for security, and Ensuring SFI features are customer ready.
+* Mitigate all S360 issues within work item SLA.
+* Complete all required security training.
+* Leverage supplemental security training from strike, MS Learning, or talks arranged by CxE.
+* Ensure security is considered during every customer engagement.* All S360/SFI work items proactively addressed
+* Assist team in resolving broad S360/SFI work items
+* Able to clearly articulate resources available to help customer become more secure.Culture HealthD&I Core Priority
+To realize our mission to empower every person and organization on the planet to achieve more, each and every one of us must help create a diverse and inclusive culture where everyone can bring their full and authentic self, in alignment with our values. 
+For more information review: D&I Core Priority for Employees
+
+
+
+Leverage the D&I Core Priority guidance for employees and One Microsoft D&I Plan 
+Identify a focus area and develop my Diversity and Inclusion core priority.. Once I have identified at least one focus area, I will articulate the impact I hope to make and how it may correspond with the three circles of impact.
+7.1 Transform Our Culture
+Activate and infuse inclusion in the day-to-day employee experience.
+7.2 Empower Our People
+Support and accelerate a diverse and inclusive workforce.
+7.3 Advance Inclusive Hiring
+Invest in meaningful engagement with future talent.
+7.4 Delight Our Customers
+Facilitate inclusive practices and products with our partner and customer ecosystem.
+
+
+
+
+* Contribute to at least one focus area for the upcoming period which promotes a more diverse and inclusive culture, aligned with One Microsoft D&I Plan.* Improved contributions to others, organization, and team culture based on feedback
+* Contributing to team recruiting efforts by acting as a talent advocate, expanding the network and directing referrals to apply to qualified roles 
+* Advocating talent from diverse backgrounds
+* Increased demonstration of allyship skills and inclusive behaviors; ongoing reflection on impact, areas of opportunity, and growth

@@ -1,0 +1,11 @@
+| Product Area | Region          | To: Recipients                                                                                                     |
+|--------------|-----------------|--------------------------------------------------------------------------------------------------------------------|
+| MIP/DLP      | Premier Americas | Cristina Mora; Kari Matson; Eduardo Marques; Daniel Arroyo; Angela Latimer; Rafael Dorneles; Robert Staska; Bousso Mbacke; Sarah Seftel; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs; Gris Dorneles |
+| eDiscovery   | Premier EMEA     | Elena Draghici; Angela Latimer; Irene Higuera Reveron; Eduardo Marques; Madalena Medo; Anubha Pandey; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |
+| DLM          | Premier EMEA     | Elena Draghici; Angela Latimer; Irene Higuera Reveron; Eduardo Marques; Madalena Medo; Anubha Pandey; Daniel Estrada Vaglio; Bousso Mbacke; Robert Staska; SCIM S&C Compliance & MDO PTAs |
+| DLM          | Premier Asia     | Vicky Yeh; Meenakshi Mehra; sophiahuang@microsoft.com; Angela Latimer; Manak Pandey; Eduardo Marques; Vikas Soundade; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs; Manish Pandey |
+| DLM          | Premier Americas | Chris Pollitt; Kari Matson; Angela Latimer; Eduardo Marques; Jon Bradley; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |
+| eDiscovery   | Premier Americas | Cristina Mora; Kari Matson; Sonya Karpishpan; Jon Bradley; Angela Latimer; Eduardo Marques; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |
+| eDiscovery   | Premier Asia     | Vicky Yeh; Meenakshi Mehra; sophiahuang@microsoft.com; Angela Latimer; Manish Pandey; Eduardo Marques; Vikas Soundade; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |
+| MIP/DLP      | Premier Asia     | Vicky Yeh; Meenakshi Mehra; sophiahuang@microsoft.com; Angela Latimer; Manish Pandey; Eduardo Marques; zhanhan@microsoft.com; Sarah Seftel; Vikas Soundade; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |
+| MIP/DLP      | Premier EMEA     | Elena Draghici; Angela Latimer; Irene Higuera Reveron; Eduardo Marques; Madalena Medo; Sarah Seftel; Anubha Pandey; Daniel Estrada Vaglio; SCIM S&C Compliance & MDO PTAs |

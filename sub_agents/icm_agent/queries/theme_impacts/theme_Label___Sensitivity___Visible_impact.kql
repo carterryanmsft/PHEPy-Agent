@@ -1,0 +1,21 @@
+// Theme: Label / Sensitivity / Visible\n// Total Incidents: 189\n// Customers Affected: 138\n// Sample Incident IDs: 2512010001, 2511280003, 2510150002, 2511280012, 2511050007, 2510080009, 2511200015, 2510280010, 2510050006, 2511150020\n\n
+let TargetIncidents = dynamic([2512010001, 2511280003, 2510150002, 2511280012, 2511050007, 2510080009, 2511200015, 2510280010, 2510050006, 2511150020]);
+Incidents
+| where IncidentId in (TargetIncidents)
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    CustomerName,
+    CreateDate,
+    ResolveDate,
+    OwningTeamName,
+    HowFixed,
+    ImpactStartDate,
+    ImpactedUserCount = CustomerImpactedUserCount,
+    ImpactedServices = strcat_array(ImpactedServices, ", "),
+    Region = CustomerRegion
+| extend 
+    ResolutionTime_Hours = datetime_diff('hour', ResolveDate, CreateDate),
+    ImpactDuration_Hours = datetime_diff('hour', ResolveDate, ImpactStartDate)
+| order by CreateDate desc

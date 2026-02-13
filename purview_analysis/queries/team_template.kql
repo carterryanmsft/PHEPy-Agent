@@ -1,0 +1,88 @@
+// ========================================
+// TEAM-SPECIFIC ANALYSIS QUERY TEMPLATE
+// ========================================
+// Purpose: Deep dive into specific Purview team incidents
+// Usage: Copy and modify @TeamName parameter for target team
+// ========================================
+
+// PARAMETERS - EDIT THESE FOR YOUR ANALYSIS
+let TeamName = "PURVIEW\\SensitivityLabels";  // CHANGE THIS: Full team path
+let DaysBack = 180;  // Time window (days)
+let MaxIncidents = 100;  // Limit results for manageability
+
+// MAIN QUERY
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIncidentIds = make_list(IncidentId, 5),  // Get up to 5 example IDs
+    UniqueTitles = dcount(Title)
+    by Title, HowFixed
+| extend 
+    IncidentType = case(
+        HowFixed == "By Design" and (Title contains "DCR"), "By Design + DCR",
+        HowFixed == "By Design", "By Design",
+        Title contains "DCR", "DCR",
+        "Other"
+    )
+| order by IncidentCount desc
+| take MaxIncidents
+
+// OUTPUT COLUMNS:
+// - Title: Incident title (pattern)
+// - HowFixed: Resolution type (focus on "By Design")
+// - IncidentCount: Number of incidents with this exact title
+// - FirstSeen: First occurrence date
+// - LastSeen: Most recent occurrence date
+// - SampleIncidentIds: List of 5 incident IDs for detailed retrieval
+// - UniqueTitles: Count of unique title variations
+// - IncidentType: Classification helper
+
+// NEXT STEPS AFTER RUNNING THIS QUERY:
+// 
+// 1. IDENTIFY THEMES:
+//    - Look for common keywords in titles
+//    - Group similar titles into themes (e.g., "File Explorer", "Auto-labeling")
+//    
+// 2. SAMPLE INCIDENTS FOR DETAIL:
+//    - Pick top 5-10 titles by IncidentCount
+//    - Use SampleIncidentIds to retrieve full context via ICM MCP:
+//      mcp_icm_mcp_eng_get_incident_context(incidentId)
+//
+// 3. ANALYZE PATTERNS:
+//    - High IncidentCount = Common customer pain point
+//    - "By Design" + high count = Documentation gap or confusing product behavior
+//    - DCR + high count = Feature request demand
+//    - FirstSeen vs LastSeen = Is this ongoing or resolved?
+//
+// 4. CATEGORIZE IMPROVEMENTS:
+//    For each theme, determine if fix requires:
+//    - 📚 Documentation: Add/update docs, FAQs, troubleshooting guides
+//    - 🔧 Product: Feature development, bug fixes, platform support
+//    - 🎨 UX: Interface improvements, error messages, workflow optimization
+//
+// 5. PRIORITIZE:
+//    - 🔴 P0: >50 incidents, blocks customers, security/compliance impact
+//    - 🟡 P1: 20-50 incidents, significant pain, workaround exists
+//    - 🟠 P2: 5-20 incidents, quality-of-life improvement
+//    - 🟢 P3: <5 incidents, nice-to-have
+
+// EXAMPLE USAGE FOR DIFFERENT TEAMS:
+// 
+// DLPEndpoint:
+//   let TeamName = "PURVIEW\\DLPEndpoint";
+//
+// eDiscovery:
+//   let TeamName = "PURVIEW\\eDiscovery";
+//
+// MIPCore:
+//   let TeamName = "PURVIEW\\MIPCore";
+
+// TROUBLESHOOTING:
+// - No results? Check TeamName format (must include "PURVIEW\\" prefix)
+// - Too many results? Reduce DaysBack or MaxIncidents
+// - Duplicate titles? This is expected - we're counting occurrences

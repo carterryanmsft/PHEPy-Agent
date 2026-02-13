@@ -1,0 +1,41 @@
+// ========================================
+// DLM APP RETENTION TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\DLMAppRetention
+// Focus: Retention policies for Teams, Yammer, other workloads
+// Common Issues: Policy application, preservation holds, deletion
+// ========================================
+
+let TeamName = "PURVIEW\\DLMAppRetention";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR DLM APP RETENTION:
+// 1. Teams Retention (chat vs. channel, private channels, meeting recordings)
+// 2. Yammer Retention (community messages, private messages, files)
+// 3. Policy Conflicts (multiple policies, precedence, exceptions)
+// 4. Preservation Hold Library (user visibility, quota consumption)
+// 5. Deletion Behavior (end of retention period, recoverable items)
+// 6. Policy Scope (adaptive scopes, included/excluded users, groups)
+// 7. Retention Labels (auto-apply, disposition review, records management)
+// 8. Performance (large tenant processing, policy propagation delays)

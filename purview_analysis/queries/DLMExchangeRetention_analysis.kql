@@ -1,0 +1,41 @@
+// ========================================
+// DLM EXCHANGE RETENTION & JOURNALING TEAM
+// ========================================
+// Team: PURVIEW\DLMExchangeRetentionandJournaling
+// Focus: Exchange mailbox retention, MRM, journaling
+// Common Issues: Retention tags, archive policies, journal reports
+// ========================================
+
+let TeamName = "PURVIEW\\DLMExchangeRetentionandJournaling";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR DLM EXCHANGE:
+// 1. Retention Tags (default tags, custom tags, policy tag application)
+// 2. MRM (Managed Folder Assistant, processing schedule, delays)
+// 3. Archive Policies (auto-expand archive, archive quota, migration)
+// 4. Journaling (journal rules, undeliverable reports, external archiving)
+// 5. Recoverable Items (purges, legal hold, single item recovery)
+// 6. Policy Conflicts (litigation hold vs. retention, preservation lock)
+// 7. Public Folder Retention (folder-level policies, inheritance)
+// 8. Migration Issues (on-prem to EXO, policy migration, tag mapping)

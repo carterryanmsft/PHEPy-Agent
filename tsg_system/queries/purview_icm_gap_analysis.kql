@@ -1,0 +1,262 @@
+// Purview ICM Escalation Gap Analysis Queries
+// Purpose: Find ICM incidents that could benefit from TSG improvements
+// Last Updated: February 4, 2026
+
+// =============================================================================
+// Query 1: All Purview Incidents (Last 90 Days)
+// =============================================================================
+// Use this to get a baseline of all Purview-related escalations
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview" or OwningService contains "Compliance"
+| where OwningService !contains "Azure Purview" // Exclude data governance Purview
+| project 
+    IncidentId,
+    Title,
+    Description,
+    Severity,
+    Status,
+    OwningService,
+    OwningTeam,
+    CreatedDate,
+    ResolvedDate,
+    ResolveTime = (ResolvedDate - CreatedDate),
+    ImpactedCustomers,
+    RootCause,
+    Resolution
+| order by CreatedDate desc
+
+
+// =============================================================================
+// Query 2: Repeated Issues (Same Title Pattern)
+// =============================================================================
+// Identifies recurring issues that should have TSGs
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| summarize 
+    IncidentCount = count(),
+    Severities = make_set(Severity),
+    FirstSeen = min(CreatedDate),
+    LastSeen = max(CreatedDate),
+    AffectedCustomers = dcount(ImpactedCustomers),
+    AvgResolutionHours = avg(datetime_diff('hour', ResolvedDate, CreatedDate)),
+    SampleIncidents = make_list(IncidentId, 5)
+    by TitlePattern = substring(Title, 0, 50)
+| where IncidentCount >= 3  // 3+ occurrences = pattern
+| order by IncidentCount desc, AffectedCustomers desc
+
+
+// =============================================================================
+// Query 3: Long Resolution Time Incidents
+// =============================================================================
+// Complex issues that likely need better troubleshooting docs
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| extend ResolutionHours = datetime_diff('hour', ResolvedDate, CreatedDate)
+| where ResolutionHours > 8  // More than 8 hours to resolve
+| project 
+    IncidentId,
+    Title,
+    ProductArea = extract(@"Purview[\s/]*([\w\s]+)", 1, OwningService),
+    Severity,
+    ResolutionHours,
+    Description,
+    RootCause,
+    EscalationCount = array_length(split(Description, "escalat"))
+| order by ResolutionHours desc
+
+
+// =============================================================================
+// Query 4: Missing Documentation Indicators
+// =============================================================================
+// Incidents mentioning lack of TSG/documentation
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| where 
+    Description contains "no TSG" or
+    Description contains "no documentation" or
+    Description contains "missing troubleshooting" or
+    Description contains "no guidance" or
+    Description contains "unclear how to" or
+    Description contains "missing steps" or
+    Title contains "no TSG" or
+    Title contains "missing doc"
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    ProductArea = extract(@"(Auditing|DLP|eDiscovery|IRM|Information Protection|Sensitivity Labels|Communication Compliance|Data Lifecycle|Ingestion|Information Barriers)", 0, Description + Title),
+    GapIndicator = case(
+        Description contains "no TSG", "No TSG Available",
+        Description contains "no documentation", "No Documentation",
+        Description contains "unclear how to", "Unclear Process",
+        "Missing Guidance"
+    ),
+    CreatedDate,
+    Description
+| order by Severity asc, CreatedDate desc
+
+
+// =============================================================================
+// Query 5: Customer-Impacting Severity 1/2 Incidents
+// =============================================================================
+// High-priority incidents that had customer impact
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| where Severity <= 2
+| where Description contains "customer" or ImpactedCustomers > 0
+| extend 
+    ProductArea = extract(@"(Auditing|DLP|Data Loss Prevention|eDiscovery|IRM|Insider Risk|Information Protection|Label|Communication Compliance|Data Lifecycle|Ingestion|Information Barriers|DSPM)", 0, OwningService + Title + Description),
+    IssueCategory = case(
+        Description contains "sync" or Description contains "synchronization", "Sync/Replication",
+        Description contains "performance" or Description contains "slow" or Description contains "timeout", "Performance/Latency",
+        Description contains "config" or Description contains "setup", "Configuration",
+        Description contains "permission" or Description contains "access", "Permissions/Access",
+        Description contains "UI" or Description contains "portal", "UI/Portal",
+        Description contains "policy" or Description contains "rule", "Policy/Rule",
+        "Other"
+    )
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    ProductArea,
+    IssueCategory,
+    CreatedDate,
+    ResolvedDate,
+    ResolutionHours = datetime_diff('hour', ResolvedDate, CreatedDate),
+    ImpactedCustomers,
+    Description = substring(Description, 0, 200)
+| order by Severity asc, ImpactedCustomers desc
+
+
+// =============================================================================
+// Query 6: TSG Gap Score by Product Area
+// =============================================================================
+// Aggregated view of which products need most TSG help
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| extend 
+    ProductArea = extract(@"(Auditing|DLP|Data Loss Prevention|eDiscovery|IRM|Insider Risk|Information Protection|Sensitivity Labels|Communication Compliance|Data Lifecycle|Ingestion|Information Barriers|DSPM|Copilot|Agents)", 0, OwningService + Title + Description),
+    HasTSGGap = (
+        Description contains "no TSG" or
+        Description contains "no documentation" or
+        Description contains "missing" or
+        Description contains "unclear"
+    ),
+    IsRepeated = false  // Will be calculated in subquery
+| where isnotempty(ProductArea)
+| summarize 
+    TotalIncidents = count(),
+    WithTSGGaps = countif(HasTSGGap),
+    Sev1Count = countif(Severity == 1),
+    Sev2Count = countif(Severity == 2),
+    AvgResolutionHours = avg(datetime_diff('hour', ResolvedDate, CreatedDate)),
+    UniqueIssues = dcount(substring(Title, 0, 30))
+    by ProductArea
+| extend TSGGapPercentage = round(todouble(WithTSGGaps) / TotalIncidents * 100, 1)
+| extend Priority = case(
+    WithTSGGaps >= 10 and TSGGapPercentage > 30, "🔴 HIGH",
+    WithTSGGaps >= 5 or TSGGapPercentage > 20, "🟡 MEDIUM",
+    "🟢 LOW"
+)
+| project 
+    ProductArea,
+    Priority,
+    TotalIncidents,
+    WithTSGGaps,
+    TSGGapPercentage,
+    Sev1Count,
+    Sev2Count,
+    AvgResolutionHours,
+    UniqueIssues
+| order by WithTSGGaps desc
+
+
+// =============================================================================
+// Query 7: Recommended TSGs to Create (Top 20)
+// =============================================================================
+// Specific TSG recommendations based on incident patterns
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| extend 
+    ProductArea = extract(@"(Auditing|DLP|Data Loss Prevention|eDiscovery|IRM|Insider Risk|Information Protection|Sensitivity Labels|Communication Compliance|Data Lifecycle|Ingestion|Information Barriers|DSPM|Copilot|Agents)", 0, OwningService + Title + Description),
+    IssuePattern = extract(@"(sync|replication|performance|slow|timeout|config|setup|permission|access|UI|portal|policy|rule|label|classification|export|search|hold|retention)", 0, tolower(Title + Description))
+| where isnotempty(ProductArea) and isnotempty(IssuePattern)
+| summarize 
+    Occurrences = count(),
+    AffectedCustomers = dcount(ImpactedCustomers),
+    SampleIncidents = make_list(IncidentId, 3),
+    AvgSeverity = avg(Severity),
+    AvgResolutionHours = avg(datetime_diff('hour', ResolvedDate, CreatedDate))
+    by ProductArea, IssuePattern
+| where Occurrences >= 2  // At least 2 occurrences
+| extend 
+    TSGTitle = strcat("Scenario: ", ProductArea, " - ", IssuePattern, " issues"),
+    RecommendationScore = Occurrences * 10 + AffectedCustomers * 5 + case(AvgSeverity <= 2, 20, 0)
+| project 
+    RecommendationScore,
+    TSGTitle,
+    ProductArea,
+    IssuePattern,
+    Occurrences,
+    AffectedCustomers,
+    AvgSeverity,
+    AvgResolutionHours,
+    SampleIncidents
+| top 20 by RecommendationScore desc
+
+
+// =============================================================================
+// Query 8: MCS/IC Customer Purview Incidents
+// =============================================================================
+// Cross-reference with your customer cohorts
+
+IcmIncidents
+| where Timestamp > ago(90d)
+| where OwningService contains "Purview"
+| join kind=inner (
+    CustomerList
+    | where Program in ("MCS", "MissionCritical", "IntensiveCare", "IC")
+    | project TenantId, CustomerName, Program
+) on $left.ImpactedTenantId == $right.TenantId
+| project 
+    IncidentId,
+    CustomerName,
+    Program,
+    Title,
+    Severity,
+    ProductArea = extract(@"(Auditing|DLP|eDiscovery|IRM|Information Protection)", 0, OwningService),
+    CreatedDate,
+    ResolutionHours = datetime_diff('hour', ResolvedDate, CreatedDate),
+    HasTSGGap = (Description contains "no TSG" or Description contains "missing doc")
+| order by Program asc, Severity asc
+
+
+// =============================================================================
+// USAGE INSTRUCTIONS
+// =============================================================================
+// 1. Copy query to Kusto Explorer or ADX Web UI
+// 2. Replace table names if needed (IcmIncidents, CustomerList)
+// 3. Adjust time ranges (ago(90d)) as needed
+// 4. Export results to CSV for processing with icm_purview_gap_analyzer.py
+// 5. Use results to update TSG gap analysis
+
+// Expected workflow:
+// Run Query 6 → Identify product areas with highest gap
+// Run Query 7 → Get specific TSG recommendations
+// Run Query 4 → Find explicit mentions of missing docs
+// Create TSGs based on priorities from gap analysis

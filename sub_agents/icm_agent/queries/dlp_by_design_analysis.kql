@@ -1,0 +1,36 @@
+// ========================================
+// "BY DESIGN" ANALYSIS FOR DLP TEAM
+// ========================================
+// Purpose: Analyze incidents marked "By Design" to identify documentation gaps
+// Team: PURVIEW\DLP
+// Time Window: Last 180 days
+// ========================================
+
+let TeamName = "PURVIEW\\DLP";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design"
+| summarize 
+    Count = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIncidents = make_list(IncidentId, 3),
+    AffectedCustomers = dcount(CustomerName),
+    SeverityBreakdown = make_bag_if(Severity, count(), isnotempty(Severity))
+    by Title
+| extend 
+    DaysBetween = datetime_diff('day', LastSeen, FirstSeen),
+    IsRecurring = iff(Count > 5, "Yes", "No")
+| order by Count desc
+
+// NEXT STEPS:
+// 1. Execute this query via mcp_kusto-mcp-ser_execute_query tool
+//    Cluster: https://icmcluster.kusto.windows.net
+//    Database: IcMDataWarehouse
+//
+// 2. Save results to: data/dlp_by_design_results.json
+//
+// 3. Run analysis: python icm_agent.py --from-file data/dlp_by_design_results.json

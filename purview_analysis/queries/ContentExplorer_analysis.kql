@@ -1,0 +1,41 @@
+// ========================================
+// CONTENT EXPLORER TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\ContentExplorer
+// Focus: Data classification visibility, label analytics
+// Common Issues: Data refresh delays, filtering, permissions
+// ========================================
+
+let TeamName = "PURVIEW\\ContentExplorer";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR CONTENT EXPLORER:
+// 1. Data Refresh (indexing delays, classification lag, stale counts)
+// 2. Filtering & Search (location filters, label filters, SIT filters)
+// 3. Permissions (Content Explorer List Viewer role, RBAC)
+// 4. Export Capabilities (CSV export limits, data sampling)
+// 5. Label Analytics (application trends, user activity, coverage)
+// 6. SIT Detection (classification accuracy, confidence scores)
+// 7. Performance (large tenant loading, timeout issues)
+// 8. UI/UX (navigation, drill-down, report customization)

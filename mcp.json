@@ -1,0 +1,48 @@
+{
+	"servers": {
+		"o365exchange-mcp-server": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"@azure-devops/mcp",
+				"o365exchange"
+			],
+			"description": "ADO work items: bugs and features (DCRs). ID format: 3563451"
+		},
+		"ASIM-Security-mcp-server": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@azure-devops/mcp",
+				"ASIM-Security"
+			],
+			"description": "ASIM Security work items and queries"
+		},
+		"ICM MCP ENG": {
+			"url": "https://icm-mcp-prod.azure-api.net/v1/",
+			"type": "http",
+			"description": "ICM incidents and escalations. ID format: 728221759, 51000000877262, 21000000855343"
+		},
+		"one-agentic-platform": {
+			"type": "http",
+			"url": "https://oap.microsoft.com/api/v1/",
+			"description": "⭐ One Agentic Platform (OAP) - PRIMARY for support cases. Unified case management with customer context, ML-powered insights, knowledge base integration, and full lifecycle operations. Replaces enterprise-mcp for most use cases."
+		},
+		"enterprise-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["@mcp-apps/enterprise-mcp-server@latest"],
+			"env": {},
+			"description": "DFM support cases with SCIM access and PII guardrails. FALLBACK for OAP. Keep for legacy access."
+		},
+		"kusto-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["@mcp-apps/kusto-mcp@latest"],
+			"env": {},
+			"description": "Kusto query engine for telemetry, diagnostic data, and analytics. Use for aggregations and trends."
+		}
+	},
+	"inputs": []
+}

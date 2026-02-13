@@ -1,0 +1,52 @@
+// ========================================
+// PURVIEW TEAMS SUMMARY QUERY
+// ========================================
+// Purpose: Get overview of all Purview teams with incident counts
+// Filters: DCR in title OR HowFixed = "By Design"
+// Time Range: Last 6 months (configurable)
+// ========================================
+
+// PARAMETERS
+let DaysBack = 180;  // Change to adjust time window (e.g., 90 for 3 months, 365 for 1 year)
+
+// MAIN QUERY
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTenantName == "Purview"
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    TotalIncidents = count(),
+    ByDesignCount = countif(HowFixed == "By Design"),
+    DCRCount = countif(Title contains "DCR"),
+    BothCount = countif(HowFixed == "By Design" and Title contains "DCR"),
+    FirstIncident = min(CreateDate),
+    LatestIncident = max(CreateDate)
+    by OwningTeamName
+| extend 
+    ByDesignPercentage = round(100.0 * ByDesignCount / TotalIncidents, 1),
+    DCRPercentage = round(100.0 * DCRCount / TotalIncidents, 1)
+| order by TotalIncidents desc
+
+// OUTPUT COLUMNS:
+// - OwningTeamName: Full team path (e.g., "PURVIEW\SensitivityLabels")
+// - TotalIncidents: Total matching incidents for this team
+// - ByDesignCount: Incidents marked "By Design"
+// - DCRCount: Incidents with "DCR" in title
+// - BothCount: Incidents that are BOTH "By Design" AND have "DCR" in title
+// - ByDesignPercentage: % of incidents marked "By Design"
+// - DCRPercentage: % of incidents with "DCR" in title
+// - FirstIncident: Date of oldest incident in range
+// - LatestIncident: Date of newest incident in range
+
+// USAGE NOTES:
+// 1. Copy this query to Kusto MCP Server execute_query tool
+// 2. Set clusterUrl = "https://icmcluster.kusto.windows.net"
+// 3. Set database = "IcmDataWarehouse"
+// 4. Adjust DaysBack parameter as needed
+// 5. Results show which teams have highest volume for targeted analysis
+
+// INTERPRETATION:
+// - High TotalIncidents = High customer pain / common scenarios
+// - High ByDesignPercentage = Potential documentation gaps or unclear product behavior
+// - High DCRCount = Many feature requests, product gaps
+// - High BothCount = Feature requests being marked "By Design" (may indicate confusion)

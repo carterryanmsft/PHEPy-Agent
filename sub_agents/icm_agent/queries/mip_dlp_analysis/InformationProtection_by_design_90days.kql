@@ -1,0 +1,19 @@
+
+let TeamName = "PURVIEW\InformationProtection";
+let DaysBack = 90;
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design"
+| summarize 
+    Count = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIncidents = make_list(IncidentId, 3),
+    AffectedCustomers = dcount(CustomerName),
+    SeverityBreakdown = make_bag_if(Severity, count(), isnotempty(Severity))
+    by Title
+| extend 
+    DaysBetween = datetime_diff('day', LastSeen, FirstSeen),
+    IsRecurring = iff(Count > 5, "Yes", "No")
+| order by Count desc

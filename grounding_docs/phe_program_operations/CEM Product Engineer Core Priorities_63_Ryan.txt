@@ -1,0 +1,52 @@
+PHE-P Program Manager – Core Priorities
+Product Health – Ownership of Diagnostics, Volume Reduction & Engineering CollaborationSuccess Measures• Lead and operationalize efforts to enhance the overall product health of MIP by identifying systemic issues, engineering gaps, and diagnostic opportunities
+•  Drive measurable improvement in supportability, incident reduction, and engagement effectiveness* Achieve and maintain SHS target ? 44%
+* Decrease Escalation Rate (ER) to < 15%
+* 50% reduction in volume with diagnostics
+* Collaborate with engineering on key diagnostics
+* Lead regular reviews with engineering teams to assess volume, trends, and "How Fixed" analysis
+* Understand IPD drivers and plans to reduce
+
+Key Activities:
+* Co-own volume forecast data for internal forums (Cx Council, WSR, ROB All-up Purview)
+* Partner with engineering to build, test, and publish diagnostics action plan and progress
+* Contribute to SHS analysis and publish shareable outcomes with CSS/CxE- Shiproom Meetings
+* Conduct product-level ROB/MBR with action follow-ups and show MoM outcomes
+* Support data driven documentation pipeline 
+Customer Health – Elevating CSAT, Reducing DSAT, and Improving Closure EfficiencySuccess Measures• Deliver a customer-obsessed experience by improving the quality and velocity of support, driving escalations to closure, and ensuring strategic customer health posture in coordination with CSS, MCSfMSC, and engineering• Drive CSAT > 4.7
+• Maintain DSAT < 4%
+• Reduce DTC P75 < 30 days
+
+Key Activities:
+• Actively contribute to status reporting, health dashboards, and customer sentiment trends
+• Lead RCA sessions and share learnings across team
+• Adhere to: FY26 Care StrategyCESPurviewPHEdocxEscalation Health – Accelerate Time to Mitigation & Improve ICM HandlingSuccess Measures• Minimize the rate and impact of escalations by driving efficient trend and root cause analysis through streamlined collaboration with engineering and CSS* Monitor and improve LQE to ? 15%
+* Ensure accurate ICM tagging, mitigation notes, and escalations follow standard workflow and timeline
+
+Key Activities:
+* Review IcM for trends and opportunities for:
+o Diagnostics
+o Documentation improvement
+o Product gapsStrategic Programs – Engineering Partnerships & ReportingSuccess Measures• Support product, engineering, and executive engagements through data-driven reporting, dashboards, and collaboration• Lead updates for WSR/MBRs on developer escalation and product health
+• Maintain dashboards for MIP metrics (ICM volume, SLA, TTM, LQE, PRs)
+• Collaborate with CARE Data Strategy & Shared Services team for accurate governance and reporting
+• Manage and regularly update team SharePoint with execution documents, insights, customer data, WSR metrics, and PM reports
+Technical Excellence: Focus on learning, readiness and growthSuccess Measures• I will develop deep technical knowledge in my area of specialization while maintaining breadth knowledge across features in my technology vertical
+• I will maintain strong analytical and problem-solving abilities to tackle complex engineering challenges effectively• Leverage the learning days and complete training
+• Demonstrate quick adaptation to new features and process changesSecurity Core PrioritySuccess MeasuresEmbrace and grow your security mindset: 
+• Maintain 100% compliance with SFI requirements for internal security
+• Prioritize Security Training
+Carry the SFI Message to our Customers and Partners: 
+• Stay up to date on SFI
+• Increase Customer Confidence on Microsoft’s Commitment to SFI
+• Leverage SFI to help our customers become more secure
+Identify and Prioritize SFI Product impact:
+• Drive the business and limit PG distraction
+• Provide feedback on features for security
+• Ensure SFI features are customer ready• Mitigate all S360 issues within work item SLA
+• Complete all required security training
+• Leverage supplemental security training from strike, MS Learning, or talks arranged by CxE
+• Ensure security is considered during every customer engagement
+• 100% compliance with SFI, SAW, and security development policiesDiversity & InclusionSuccess Measures• I will leverage the D&I Core Priority guidance for employees and One Microsoft D&I Plan to identify a focus areas to develop Diversity and Inclusion core priority
+• I will apply a growth mindset as I reflect on my behaviors, areas for future growth, and how I might contribute to a more diverse and inclusive Microsoft• Contribute to at least one focus area for the upcoming period which promotes a more diverse and inclusive culture, aligned with One Microsoft D&I Plan
+

@@ -1,0 +1,41 @@
+// ========================================
+// MIP CORE TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\MIPCore
+// Focus: Core labeling infrastructure, SDK, service APIs
+// Common Issues: Service availability, API throttling, SDK bugs
+// ========================================
+
+let TeamName = "PURVIEW\\MIPCore";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR MIP CORE:
+// 1. Service Reliability (503 errors, timeouts, regional outages)
+// 2. API Throttling (rate limits, retry logic, bulk operations)
+// 3. MIP SDK (C++/Python/.NET bindings, version compatibility)
+// 4. Label Policy Sync (propagation delays, caching issues)
+// 5. Authentication (AAD token refresh, app registration, MSAL)
+// 6. Custom Integrations (3rd-party apps, ISV support, API docs)
+// 7. Cross-Tenant Scenarios (B2B collaboration, guest access)
+// 8. Telemetry & Diagnostics (logging, trace IDs, debugging)

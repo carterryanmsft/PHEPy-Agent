@@ -1,0 +1,21 @@
+// Theme: Encrypted / Email / Unable\n// Total Incidents: 19\n// Customers Affected: 15\n// Sample Incident IDs: 2511050048, 2510010033, 2509100026\n\n
+let TargetIncidents = dynamic([2511050048, 2510010033, 2509100026]);
+Incidents
+| where IncidentId in (TargetIncidents)
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    CustomerName,
+    CreateDate,
+    ResolveDate,
+    OwningTeamName,
+    HowFixed,
+    ImpactStartDate,
+    ImpactedUserCount = CustomerImpactedUserCount,
+    ImpactedServices = strcat_array(ImpactedServices, ", "),
+    Region = CustomerRegion
+| extend 
+    ResolutionTime_Hours = datetime_diff('hour', ResolveDate, CreateDate),
+    ImpactDuration_Hours = datetime_diff('hour', ResolveDate, ImpactStartDate)
+| order by CreateDate desc

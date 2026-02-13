@@ -1,0 +1,37 @@
+
+This resource introduces structured problem solving using the DIVE framework (Define, Investigate, Validate, Execute).
+
+Problem Solving:
+A structured approach to closing performance gaps by identifying the gap, addressing root causes, and implementing durable fixes.
+
+Why It Matters:
+- Break complex problems into solvable parts.
+- Address root causes.
+- Reveal cross‑team dependencies.
+- Build durable, data‑driven solutions.
+
+When to Use:
+- KPIs off track for 2+ months.
+- Unclear next steps.
+- Recurring issues.
+
+Participants:
+- Executive Sponsor
+- KPI DRI
+- KPI Team Members
+
+Mindset Principles:
+- Transparency
+- Accountability
+- Growth mindset
+- Progress over perfection
+- Evidence over assumptions
+- Intentional problem solving
+
+DIVE Stages:
+1. Define — clarify target, actual, gap, trend.
+2. Investigate — use evidence, gap concentration, root cause.
+3. Validate — countermeasures, experiments.
+4. Execute — owners, timelines, controls.
+
+PSR integrates directly with DIVE.

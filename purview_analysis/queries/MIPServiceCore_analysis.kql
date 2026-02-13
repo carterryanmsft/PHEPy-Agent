@@ -1,0 +1,41 @@
+// ========================================
+// MIP SERVICE CORE TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\MIPServiceCore
+// Focus: Backend labeling services, policy management, licensing
+// Common Issues: Service health, policy sync, license validation
+// ========================================
+
+let TeamName = "PURVIEW\\MIPServiceCore";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR MIP SERVICE CORE:
+// 1. Service Health (availability, latency, regional issues)
+// 2. Policy Distribution (label policy propagation, caching, versioning)
+// 3. License Validation (E3 vs E5 feature checks, trial licenses)
+// 4. Label Taxonomy (label creation, editing, deletion, inheritance)
+// 5. Super User Access (service account labeling, automation)
+// 6. Tenant Configuration (settings sync, feature flags, rollout)
+// 7. Backend Processing (label application queue, bulk operations)
+// 8. Cross-Tenant Operations (B2B label exchange, external content)

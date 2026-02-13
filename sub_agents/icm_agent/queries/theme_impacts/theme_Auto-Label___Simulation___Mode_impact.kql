@@ -1,0 +1,21 @@
+// Theme: Auto-Label / Simulation / Mode\n// Total Incidents: 16\n// Customers Affected: 12\n// Sample Incident IDs: 2510200040, 2509150025, 2508280018\n\n
+let TargetIncidents = dynamic([2510200040, 2509150025, 2508280018]);
+Incidents
+| where IncidentId in (TargetIncidents)
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    CustomerName,
+    CreateDate,
+    ResolveDate,
+    OwningTeamName,
+    HowFixed,
+    ImpactStartDate,
+    ImpactedUserCount = CustomerImpactedUserCount,
+    ImpactedServices = strcat_array(ImpactedServices, ", "),
+    Region = CustomerRegion
+| extend 
+    ResolutionTime_Hours = datetime_diff('hour', ResolveDate, CreateDate),
+    ImpactDuration_Hours = datetime_diff('hour', ResolveDate, ImpactStartDate)
+| order by CreateDate desc

@@ -1,0 +1,36 @@
+# ========================================
+# PHEPy Project - Python Dependencies
+# ========================================
+# Product Health Engineering Python Agent System
+# Last Updated: February 4, 2026
+
+# ----------------------------------------
+# Core Data Processing
+# ----------------------------------------
+# Used extensively in risk_reports/ for case data analysis
+pandas>=2.0.0
+
+# ----------------------------------------
+# Installation Instructions
+# ----------------------------------------
+# 1. Create virtual environment:
+#    python -m venv .venv
+#
+# 2. Activate virtual environment:
+#    Windows: .venv\Scripts\activate
+#    Linux/Mac: source .venv/bin/activate
+#
+# 3. Install dependencies:
+#    pip install -r requirements.txt
+#
+# 4. Verify installation:
+#    python -c "import pandas; print(pandas.__version__)"
+
+# ----------------------------------------
+# Future Dependencies (As Needed)
+# ----------------------------------------
+# Uncomment when needed:
+# requests>=2.31.0          # HTTP requests for APIs
+# python-dotenv>=1.0.0      # Environment variable management
+# azure-identity>=1.15.0    # Azure authentication
+# openpyxl>=3.1.0          # Excel file handling

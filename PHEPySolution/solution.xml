@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.24021.00184" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>PHEPyOrchestrator</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="PHEPy Orchestrator" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Comprehensive Purview Product Health &amp; Escalation Orchestrator Agent with ICM, ADO, Kusto, and case management capabilities" languagecode="1033" />
+    </Descriptions>
+    <Version>1.0.0.0</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>microsoft</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="Microsoft" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description description="Microsoft Corporation" languagecode="1033" />
+      </Descriptions>
+      <EMailAddress>support@microsoft.com</EMailAddress>
+      <SupportingWebsiteUrl>https://microsoft.com</SupportingWebsiteUrl>
+      <CustomizationPrefix>phepy</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>10000</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City>Redmond</City>
+          <County>King</County>
+          <Country>USA</Country>
+          <Line1>One Microsoft Way</Line1>
+          <PostalCode>98052</PostalCode>
+          <StateOrProvince>WA</StateOrProvince>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents />
+    <MissingDependencies />
+  </SolutionManifest>
+</ImportExportXml>

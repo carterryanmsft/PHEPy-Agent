@@ -1,0 +1,77 @@
+# Purview Sensitivity Labels - ICM IDs from Last 90 Days
+# Query Date: 2026-02-04
+# Total Unique ICMs: 620
+# Filtered by: HowFixed NOT IN ("By Design", "Fixed with Hotfix")
+#
+# Team Distribution:
+# - PURVIEW\SensitivityLabels: 233 ICMs
+# - PURVIEW\Classification: 109 ICMs
+# - PURVIEW\PurviewMessageEncryption: 73 ICMs  
+# - PURVIEW\ServerSideAutoLabeling: 63 ICMs
+# - PURVIEW\MicrosoftPurviewInformationProtectionClient: 45 ICMs
+# - PURVIEW\MicrosoftPurviewInformationProtectionService: 40 ICMs
+# - PURVIEW\ExactDataMatch(EDM): 31 ICMs
+# - PURVIEW\TrainableClassifiers: 26 ICMs
+#
+# Kusto Query Used:
+# Incidents
+# | where CreateDate >= ago(90d)
+# | where OwningTenantName == "Purview"
+# | where OwningTeamName in ("PURVIEW\\SensitivityLabels", "PURVIEW\\Classification", "PURVIEW\\PurviewMessageEncryption", "PURVIEW\\ServerSideAutoLabeling", "PURVIEW\\TrainableClassifiers", "PURVIEW\\MicrosoftPurviewInformationProtectionClient", "PURVIEW\\MicrosoftPurviewInformationProtectionService", "PURVIEW\\ExactDataMatch(EDM)")
+# | where HowFixed !in ("By Design", "Fixed with Hotfix")
+# | summarize LatestCreateDate = max(CreateDate) by IncidentId, Title, Severity, OwningTeamName
+# | order by LatestCreateDate desc
+
+# Sample of top 50 most recent ICMs:
+21000000887894	Users can delete the Sensitivity labels from Office documents	PURVIEW\SensitivityLabels	2026-02-04T21:43:47.039Z
+21000000887192	Exchange Online (Get‑RMSTemplate) Not Retrieving RMS Templates.	PURVIEW\PurviewMessageEncryption	2026-02-04T15:42:08.369Z
+21000000887231	Track and Revocation Not Working	PURVIEW\SensitivityLabels	2026-02-04T15:25:02.813Z
+51000000886131	Justification pop up customization	PURVIEW\SensitivityLabels	2026-02-04T13:27:54.087Z
+21000000886974	MRM is not processing emails from inbox to archive	PURVIEW\Classification	2026-02-04T13:24:13.326Z
+51000000885589	MIP-protected messages cannot be recalled by the second recipient as a Sender who forwarded the message to a third user within the same Exchange Online tenant.	PURVIEW\PurviewMessageEncryption	2026-02-04T07:09:07.088Z
+21000000884499	Trainable classifier timing out	PURVIEW\TrainableClassifiers	2026-02-03T14:51:38.492Z
+21000000884661	We are implementing DLP policies and find out that there are missing Sensitive Information Types like: All full names, All Physical Addresses and U.S. physical addresses.	PURVIEW\TrainableClassifiers	2026-02-03T14:30:59.339Z
+51000000883429	Auto Labelling issue	PURVIEW\ServerSideAutoLabeling	2026-02-03T14:26:04.312Z
+51000000883110	[21V China] Sensitivity Label published not visible on Word web, but visible in Outlook web	PURVIEW\SensitivityLabels	2026-02-03T08:16:45.748Z
+51000000883036	Content Scan - Relabel behavior	PURVIEW\MicrosoftPurviewInformationProtectionClient	2026-02-03T04:59:37.012Z
+21000000884003	Base SIT Information type result and the EDM sensitive information type result differs	PURVIEW\ExactDataMatch(EDM)	2026-02-03T03:43:10.961Z
+51000000879828	Label experience for non-Office 365 users.	PURVIEW\SensitivityLabels	2026-02-02T16:59:41.266Z
+21000000880891	Training Failed.  (DOD-tenant)	PURVIEW\TrainableClassifiers	2026-02-02T16:17:37.045Z
+51000000879637	Why the older files are being classified, even though the files were not opened or modified after the trainable classifier was published.	PURVIEW\TrainableClassifiers	2026-02-02T15:28:47.797Z
+51000000879655	Need to confirm label behavior.	PURVIEW\SensitivityLabels	2026-02-02T13:57:55.279Z
+51000000879746	Encryption label not working in OWA and New outlook	PURVIEW\PurviewMessageEncryption	2026-02-02T13:51:48.824Z
+51000000879362	Increase maximum text size scanned from file	PURVIEW\Classification	2026-02-02T03:54:40.321Z
+741203392	We are having problems with labeling older versions of Office files doc, xls, ppt	PURVIEW\MicrosoftPurviewInformationProtectionClient	2026-01-30T22:05:23.467Z
+51000000878019	General Password sensitive info type is not triggering as expected	PURVIEW\Classification	2026-01-30T20:51:03.998Z
+51000000877968	Auto-Labeling Policy does not match SSN SITs	PURVIEW\ServerSideAutoLabeling	2026-01-30T19:41:56.763Z
+741143538	Users are not receiving 'justification' prompt when they try to remove a label	PURVIEW\SensitivityLabels	2026-01-30T19:03:48.393Z
+21000000879101	Office files ending up with two different sensitivity labels - PG already present at Cx meeting	PURVIEW\SensitivityLabels	2026-01-30T18:52:27.914Z
+741136486	SharePoint site not excluded from Retention Policy as expected.	PURVIEW\SensitivityLabels	2026-01-30T18:41:01.930Z
+51000000877817	File is Not getting right classification	PURVIEW\Classification	2026-01-30T17:16:17.453Z
+51000000877902	Custom classifier failed due to training time out	PURVIEW\TrainableClassifiers	2026-01-30T16:07:18.856Z
+51000000877821	Not receiving OME one-time passcode	PURVIEW\PurviewMessageEncryption	2026-01-30T14:52:31.267Z
+51000000877665	On‑Demand Classification / Cold Scan Skipping Files – Need RCA for Skipped Items	PURVIEW\Classification	2026-01-30T12:38:08.777Z
+21000000878547	Inconsistent SIT detection in images	PURVIEW\SensitivityLabels	2026-01-30T12:23:15.947Z
+51000000877418	Case # 2601200050002244 : AD RMS Migration error	PURVIEW\MicrosoftPurviewInformationProtectionService	2026-01-30T11:24:34.619Z
+21000000878209	File metadata still contains an old label that in triggers a DLP policy that blocks the file from being sent out in an email.	PURVIEW\MicrosoftPurviewInformationProtectionClient	2026-01-30T06:22:10.633Z
+51000000877059	Request to extend the SITs quota to 1,000	PURVIEW\Classification	2026-01-30T03:50:43.143Z
+51000000877183	Few internal recipient can't open encrypted emails	PURVIEW\PurviewMessageEncryption	2026-01-30T03:01:15.845Z
+21000000877290	Increase the limit of number of SIT's that can be scoped to a DLP Rule	PURVIEW\Classification	2026-01-29T15:57:58.378Z
+51000000876370	Emails sent with Labels that apply encryption are received without encryption	PURVIEW\SensitivityLabels	2026-01-29T15:53:51.563Z
+51000000876396	Detailed Usage Reports are blank for Information Protection in Usage Center	PURVIEW\SensitivityLabels	2026-01-29T14:32:49.304Z
+21000000877270	Can't open encrypted emails	PURVIEW\PurviewMessageEncryption	2026-01-29T13:33:22.240Z
+51000000876215	File with contents that starts with <? is not getting detected/extracted by Sensitive Info Type.	PURVIEW\Classification	2026-01-29T10:25:26.074Z
+740471990	Specification for audit log behavior related to configuration changes in Microsoft Information Protection solution settings	PURVIEW\MicrosoftPurviewInformationProtectionClient	2026-01-29T09:19:58.623Z
+51000000875876	The default \"Resume\" Trainable Classifiers not showing the correct matching documents.	PURVIEW\TrainableClassifiers	2026-01-29T04:42:06.856Z
+51000000875545	.xlsx file matching \"document or attachment is password protected\" predicate	PURVIEW\Classification	2026-01-28T21:49:37.214Z
+740211873	Sensitivity labels priority is not respected in old Outlook	PURVIEW\SensitivityLabels	2026-01-28T20:33:59.330Z
+21000000876391	Outbound Purview encrypted emails are not sent in clear text to 3rd party journaling system (Mimecast)-	PURVIEW\PurviewMessageEncryption	2026-01-28T19:17:08.704Z
+740071440	Customer unable to create, delete or edit EDM classifier in purview, when they perform the task they end up getting client error.	PURVIEW\ExactDataMatch(EDM)	2026-01-28T13:43:31.520Z
+51000000874724	an auto-labeling policy configured to apply a sensitivity label to inbound emails from external senders is not triggering as expected.	PURVIEW\ServerSideAutoLabeling	2026-01-28T10:23:21.732Z
+739962890	Filters not working as expected in Auto Labeling Policy	PURVIEW\ServerSideAutoLabeling	2026-01-28T08:29:35.783Z
+21000000875384	[JPN] EDM SIT Detection Failure	PURVIEW\ExactDataMatch(EDM)	2026-01-28T04:18:21.138Z
+739814723	Need clarification on the Tracking and Revoke access documents	PURVIEW\SensitivityLabels	2026-01-28T00:26:11.627Z
+21000000875232	2601260040009972 || Label with \"Do Not Forward\" protection not enforcing \"forward prevention\"	PURVIEW\SensitivityLabels	2026-01-27T23:17:40.385Z
+739791735	DCR request: EXO Powershell Set-Label cmdlet -LocaleSetting options do not support Content markings	PURVIEW\SensitivityLabels	2026-01-27T23:16:51.693Z
+
+# [FULL LIST AVAILABLE IN KUSTO QUERY - 620 TOTAL]

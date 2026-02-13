@@ -1,0 +1,82 @@
+// Query: IC and MCS Cases for Purview (with Customer List)
+// Purpose: Support cases for IC/MCS customers using actual customer enrollment list
+// Cluster: cxedataplatformcluster.westus2.kusto.windows.net
+// Database: cxedata
+// Customer List: grounding_docs/contacts_access/IC and MCS 2.4.csv
+// Date: February 4, 2026
+
+// Define IC/MCS customer tenants (from IC and MCS 2.4.csv)
+let ICMCSTenants = datatable(TopParentName:string, TPID:int, TenantId:string, CLE:string, PHE:string, Program:string)
+[
+    "ADNOC", 521755, "74892fe7-b6cb-43e7-912b-52194d3fd7c8", "Prashant Shanbhag", "Angelo Oliveira", "MCS",
+    "Amazon", 915327, "5280104a-472d-4538-9ccf-1e1d0efe8b1b", "Cosmin Guliman", "Kanika Kapoor", "MCS",
+    "Barclays Bank", 1835064, "c4b62f1d-01e0-4107-a0cc-5ac886858b23", "Angelo Oliveira", "Neill O'Keeffe", "MCS",
+    "EY", 636852, "5b973f99-77df-4beb-b27d-aa0c70b8482c", "JJ Streicher-Bremer", "Ramana Krishnamoorthy", "MCS",
+    "Morgan Stanley", 642489, "03beb921-c16c-4a69-a0df-0c9b1fb22415", "Serina Vartanian", "Ron Mustard", "MCS",
+    "Morgan Stanley", 642489, "e29b8111-49f8-418d-ac2a-935335a52614", "Serina Vartanian", "Ron Mustard", "MCS",
+    "National Health Service", 522086, "37c354b2-85b0-47f5-b222-07b48d774ee3", "Pavel Garmashov", "Karthik Muthiah R", "MCS",
+    "Palantir", 11926445, "76463010-5dd7-40c7-b509-7ce28ba39430", "Steven Andress", "Hemanth Varyani", "MCS",
+    "Walmart", 784852, "3cbcc3d3-094d-4006-9849-0d11d61f484d", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "b3fddaa6-c66f-4dc6-acec-aee02fd27d25", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "af82106b-f60a-4242-8e57-216d39d26b7d", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "e96e5039-f1ad-4b4d-8d8f-d42084607ae2", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "4d75fb71-9099-4d4b-b774-7346d1eb2563", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "c8cc070e-dfed-45c9-bda5-29d00121acbb", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "2ce79a24-c41a-4e48-838b-c6eea361762e", "Steven Andress", "Tim Griffin", "MCS",
+    "Walmart", 784852, "f6f3eefa-6b96-4d00-8389-192378d54e1f", "Steven Andress", "Tim Griffin", "MCS",
+    "Ford", 639534, "c990bb7a-51f4-439b-bd36-9c07fb1041c0", "", "Ron Mustard", "IC",
+    "Sainsbury's", 7056084, "e11fd634-26b5-47f4-8b8c-908e466e9bdf", "", "Sonal Sagar", "IC",
+    "Autodesk", 625338, "67bff79e-7f91-4433-a8e5-c9252d2ddc1d", "", "Tim Griffin", "IC",
+    "Vodafone", 520413, "68283f3b-8487-4c86-adb3-a5228f18b893", "", "Josef Ibarra", "IC",
+    "State of WA", 641135, "11d0e217-264e-400a-8ba0-57dcc127d72d", "", "Kanika Kapoor", "IC",
+    "State of WA", 641135, "9ef85bca-98dd-4e6e-b55c-f296e678e989", "", "Kanika Kapoor", "IC",
+    "BHP", 523272, "4f6e1565-c2c7-43cb-8a4c-0981d022ce20", "", "Manaswi Upadhyaya K", "IC",
+    "AGL Energy", 1170498, "123913b9-915d-4d67-aaf9-ce327e8fc59f", "", "Maathangi Kannan Vaidehi", "IC",
+    "WSP", 2831650, "3d234255-e20f-4205-88a5-9658a402999b", "", "Amulya Eedara", "IC",
+    "Huntington", 645695, "157a26ef-912f-4244-abef-b45fc4bd77f9", "", "Hemanth Varyani", "IC",
+    "Nestle", 604010, "12a3af23-a769-4654-847f-958f3d479f4a", "", "Josef Ibarra", "IC",
+    "Santander", 1278397, "35595a02-4d6d-44ac-99e1-f9ab4cd872db", "", "Pavel Garmashov", "IC",
+    "Zurich", 2656229, "95d1d810-50cf-4169-8565-6bfba279a0cd", "", "Pavel Garmashov", "IC",
+    "Novartis", 1528952, "f35a6974-607f-47d4-82d7-ff31d7dc53a5", "", "Ramana Krishnamoorthy", "IC",
+    "NAB", 1104955, "48d6943f-580e-40b1-a0e1-c07fa3707873", "", "KAPIL Chopra", "IC",
+    "MUFJ", 5025483, "3a498a73-f68c-4993-9940-40f5dc4b029b", "", "Salonie Vyas", "IC",
+    "MUFJ", 5025483, "952d7d55-02c8-4421-ae6d-aa79da2f5152", "", "Salonie Vyas", "IC"
+];
+cluster('cxedataplatformcluster.westus2.kusto.windows.net').database('cxedata').GetSCIMIncidentV2
+| where ServiceRequestState != "Closed"
+| where ProductName contains "Purview" or SAPPath contains "Purview" or PlanningCategory startswith "SCIM"
+| join kind=inner ICMCSTenants on TenantId
+| extend DaysOpen = todouble(CaseAge)
+| where DaysOpen > 30  // Cases open more than 30 days
+| extend AgeCategory = case(
+    DaysOpen > 60, "Critical (>60 days)",
+    DaysOpen > 30, "High (30-60 days)",
+    "Normal (<30 days)")
+| project 
+    ServiceRequestNumber,
+    TopParentName,  // Customer name
+    Program,  // MCS or IC
+    PHE,  // Product Health Engineer
+    CLE,  // Customer Lead Engineer
+    ServiceRequestCurrentSeverity,
+    ServiceRequestState,
+    ServiceRequestStatus,
+    Title,
+    CreatedTime,
+    DaysOpen,
+    AgeCategory,
+    AgentAlias,
+    TenantId,
+    TPID,
+    QueueName,
+    IsCritSit,
+    RelatedICM_Id,
+    CaseUri
+| order by Program asc, DaysOpen desc
+
+// Summary by Program
+// | summarize CaseCount = count(), 
+//             AvgDaysOpen = avg(DaysOpen),
+//             MaxDaysOpen = max(DaysOpen)
+//             by Program, ServiceRequestCurrentSeverity
+// | order by Program asc, ServiceRequestCurrentSeverity asc

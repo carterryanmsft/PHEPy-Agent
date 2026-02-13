@@ -1,0 +1,25 @@
+
+The Problem Solving Report (PSR) is a structured communication tool to align teams, clarify gaps, and accelerate impact. Used when misalignment exists, acceleration is needed, or support is required.
+
+Roles:
+- KPI DRI
+- KPI Team Members
+- Executive Sponsor
+
+Core PSR structure:
+- Where Are We?
+- What Do We Need?
+- What Has Been Done?
+- What’s Next?
+
+DIVE Framework:
+Define → Investigate → Validate → Execute.
+
+PSR Components:
+- Clarify the Gap
+- Trend the Gap
+- Identify Gap Concentration
+- Identify Root Cause
+- Generate Countermeasures
+- Experiment to Derisk
+- Execute with Rigor

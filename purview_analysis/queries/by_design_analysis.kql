@@ -1,0 +1,80 @@
+// ========================================
+// "BY DESIGN" DEEP DIVE QUERY
+// ========================================
+// Purpose: Analyze incidents marked "By Design" to identify documentation gaps
+// Use Case: Find patterns in customer confusion about expected product behavior
+// ========================================
+
+// PARAMETERS
+let TeamName = "PURVIEW\\SensitivityLabels";  // CHANGE THIS for your team
+let DaysBack = 180;
+
+// QUERY: BY DESIGN INCIDENTS GROUPED BY TITLE
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design"
+| summarize 
+    Count = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIncidents = make_list(IncidentId, 3),
+    AffectedCustomers = dcount(CustomerName),
+    SeverityBreakdown = make_bag_if(Severity, count(), isnotempty(Severity))
+    by Title
+| extend 
+    DaysBetween = datetime_diff('day', LastSeen, FirstSeen),
+    IsRecurring = iff(Count > 5, "Yes", "No")
+| order by Count desc
+
+// OUTPUT INTERPRETATION:
+// 
+// Count: Number of times this exact issue was marked "By Design"
+//        High count = Strong signal for documentation/education need
+//
+// FirstSeen/LastSeen: Time range of incidents
+//        Long range + high count = Persistent confusion
+//
+// AffectedCustomers: Unique customers reporting this
+//        High value = Broad impact, not isolated case
+//
+// SeverityBreakdown: Distribution of Sev2/Sev3/Sev4
+//        Many Sev2 = High business impact despite "By Design"
+//
+// IsRecurring: "Yes" if >5 incidents
+//        Indicates systemic documentation gap
+
+// ACTION ITEMS FOR HIGH-COUNT "BY DESIGN" INCIDENTS:
+//
+// 1. DOCUMENTATION IMPROVEMENTS:
+//    - Create dedicated doc page explaining the behavior
+//    - Add to FAQ section
+//    - Include in troubleshooting guide
+//    - Update product description to set expectations
+//
+// 2. PRODUCT CONSIDERATION:
+//    - Is this a feature gap that should be addressed?
+//    - Would a small UX change reduce confusion?
+//    - Should error messages be clearer?
+//
+// 3. PROACTIVE COMMUNICATION:
+//    - Blog post explaining the limitation
+//    - Release notes if behavior changed
+//    - In-product messaging (tooltips, help links)
+
+// EXAMPLE OUTPUTS TO LOOK FOR:
+//
+// Title: "Sensitivity label not visible in File Explorer Details view"
+// Count: 45
+// AffectedCustomers: 32
+// → ACTION: Document File Explorer limitation, explain column configuration
+//
+// Title: "Auto-labeling policy not applying to existing files"
+// Count: 28
+// AffectedCustomers: 18
+// → ACTION: Clarify auto-labeling only applies to new/modified files in docs
+//
+// Title: "DCR: Support for iOS native mail app"
+// Count: 67 (but marked "By Design"!)
+// AffectedCustomers: 41
+// → ACTION: This should be a feature request, not "By Design" - route to PM

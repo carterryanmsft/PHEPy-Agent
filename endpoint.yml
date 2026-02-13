@@ -1,0 +1,9 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: phepy-orchestrator
+description: PHEPy Orchestrator Agent endpoint
+auth_mode: key
+tags:
+  environment: production
+  team: cxe-support
+  product: purview
+  purpose: ai-assistant

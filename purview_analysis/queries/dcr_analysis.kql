@@ -1,0 +1,118 @@
+// ========================================
+// DCR (DESIGN CHANGE REQUEST) ANALYSIS QUERY
+// ========================================
+// Purpose: Analyze feature requests to identify product gaps and roadmap priorities
+// Use Case: Understand what customers are asking for that doesn't exist yet
+// ========================================
+
+// PARAMETERS
+let TeamName = "PURVIEW\\SensitivityLabels";  // CHANGE THIS for your team
+let DaysBack = 180;
+
+// QUERY: DCR PATTERNS AND TRENDING
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where Title contains "DCR"
+| summarize 
+    RequestCount = count(),
+    FirstRequested = min(CreateDate),
+    MostRecentRequest = max(CreateDate),
+    SampleIncidentIds = make_list(IncidentId, 3),
+    UniqueCustomers = dcount(CustomerName),
+    SeverityDistribution = make_bag_if(Severity, count(), isnotempty(Severity)),
+    MonthlyTrend = make_list(bin(CreateDate, 30d))
+    by Title
+| extend 
+    RequestSpan = datetime_diff('day', MostRecentRequest, FirstRequested),
+    CustomerDemand = case(
+        UniqueCustomers >= 20, "Very High",
+        UniqueCustomers >= 10, "High",
+        UniqueCustomers >= 5, "Medium",
+        "Low"
+    ),
+    Trending = iff(RequestCount >= 10 and RequestSpan <= 90, "Yes", "No")
+| order by RequestCount desc, UniqueCustomers desc
+
+// OUTPUT INTERPRETATION:
+//
+// RequestCount: Number of times this feature was requested
+//               High count = Strong customer need
+//
+// UniqueCustomers: Number of different customers requesting
+//                  High value = Broad demand, not isolated
+//
+// CustomerDemand: Classification (Very High / High / Medium / Low)
+//                 Use for roadmap prioritization
+//
+// Trending: "Yes" if many requests in short time
+//           Indicates emerging need or recent pain point
+//
+// RequestSpan: Days between first and most recent request
+//              Long span = Persistent unmet need
+
+// PRODUCT PRIORITIZATION FRAMEWORK:
+//
+// 🔴 P0 - CRITICAL FEATURE GAPS:
+//    - UniqueCustomers >= 20
+//    - OR RequestCount >= 50
+//    - OR Affects security/compliance scenarios
+//    - OR Blocking large enterprise deployments
+//
+// 🟡 P1 - HIGH PRIORITY:
+//    - UniqueCustomers >= 10
+//    - OR RequestCount >= 20
+//    - OR Common workflow enhancement
+//    - OR Parity with competitor feature
+//
+// 🟠 P2 - MEDIUM PRIORITY:
+//    - UniqueCustomers >= 5
+//    - OR RequestCount >= 10
+//    - OR Quality-of-life improvement
+//    - OR Platform-specific gap (e.g., iOS only)
+//
+// 🟢 P3 - LOW PRIORITY:
+//    - UniqueCustomers < 5
+//    - RequestCount < 10
+//    - Edge case or niche scenario
+//    - Nice-to-have enhancement
+
+// ACTION ITEMS FOR HIGH-DEMAND DCRs:
+//
+// 1. FEATURE DEVELOPMENT:
+//    - Add to product backlog
+//    - Estimate engineering effort
+//    - Align with roadmap priorities
+//    - Get PM approval for scheduling
+//
+// 2. INTERIM WORKAROUNDS:
+//    - Document alternative approaches
+//    - Provide scripts/tools if applicable
+//    - Set customer expectations
+//
+// 3. CUSTOMER COMMUNICATION:
+//    - Respond to all incidents with status
+//    - If on roadmap: Share timeline
+//    - If not planned: Explain rationale
+//    - Offer workarounds where possible
+
+// EXAMPLE DCR PATTERNS:
+//
+// "DCR: Support for sensitivity labels in Power BI Desktop"
+// RequestCount: 89, UniqueCustomers: 34
+// → ACTION: P0 - Major platform gap, high demand, add to roadmap
+//
+// "DCR: Ability to bulk-edit labels via PowerShell"
+// RequestCount: 23, UniqueCustomers: 15
+// → ACTION: P1 - Admin scenario, moderate demand, consider for future sprint
+//
+// "DCR: Custom label colors in Office apps"
+// RequestCount: 7, UniqueCustomers: 4
+// → ACTION: P3 - Cosmetic enhancement, low demand, defer
+
+// ROADMAP ALIGNMENT:
+// Cross-reference high-demand DCRs with:
+// - Existing roadmap commitments
+// - Competitor feature comparisons
+// - Strategic product direction
+// - Engineering capacity constraints

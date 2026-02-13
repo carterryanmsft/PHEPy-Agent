@@ -1,0 +1,21 @@
+// Theme: Automatic / Classification / Detecting\n// Total Incidents: 21\n// Customers Affected: 16\n// Sample Incident IDs: 2511050030, 2510120018, 2509200012\n\n
+let TargetIncidents = dynamic([2511050030, 2510120018, 2509200012]);
+Incidents
+| where IncidentId in (TargetIncidents)
+| project 
+    IncidentId,
+    Title,
+    Severity,
+    CustomerName,
+    CreateDate,
+    ResolveDate,
+    OwningTeamName,
+    HowFixed,
+    ImpactStartDate,
+    ImpactedUserCount = CustomerImpactedUserCount,
+    ImpactedServices = strcat_array(ImpactedServices, ", "),
+    Region = CustomerRegion
+| extend 
+    ResolutionTime_Hours = datetime_diff('hour', ResolveDate, CreateDate),
+    ImpactDuration_Hours = datetime_diff('hour', ResolveDate, ImpactStartDate)
+| order by CreateDate desc

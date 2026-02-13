@@ -1,0 +1,41 @@
+// ========================================
+// eDISCOVERY TEAM ANALYSIS
+// ========================================
+// Team: PURVIEW\eDiscovery
+// Focus: Legal hold, content search, export, review sets
+// Common Issues: Search scope, export failures, permissions
+// ========================================
+
+let TeamName = "PURVIEW\\eDiscovery";
+let DaysBack = 180;
+
+Incidents
+| where CreateDate >= ago(DaysBack)
+| where OwningTeamName == TeamName
+| where HowFixed == "By Design" or Title contains "DCR"
+| summarize 
+    IncidentCount = count(),
+    FirstSeen = min(CreateDate),
+    LastSeen = max(CreateDate),
+    SampleIds = make_list(IncidentId, 5),
+    UniqueCustomers = dcount(CustomerName),
+    ByDesign = countif(HowFixed == "By Design"),
+    DCR = countif(Title contains "DCR")
+    by Title
+| extend Priority = case(
+    IncidentCount >= 50, "P0 - Critical",
+    IncidentCount >= 20, "P1 - High",
+    IncidentCount >= 10, "P2 - Medium",
+    "P3 - Low"
+)
+| order by IncidentCount desc
+
+// KNOWN THEME AREAS FOR eDISCOVERY:
+// 1. Content Search (KQL query syntax, scope limitations, indexing delays)
+// 2. Legal Hold (placement failures, preservation limits, hold conflicts)
+// 3. Export Operations (PST size limits, timeout issues, corrupted exports)
+// 4. Review Sets (loading errors, tagging, analytics, OCR processing)
+// 5. Permissions & RBAC (eDiscovery Manager role, compliance admin access)
+// 6. Performance (large mailbox searches, multi-location queries)
+// 7. Teams/Channel Support (private channels, chat vs. channel messages)
+// 8. Advanced eDiscovery (ML models, predictive coding, custodian mapping)
